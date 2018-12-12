@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>豆瓣首页</title>
+    <!-- 引入reset.css用来清除浏览器的默认样式 -->
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/page.css">
+
+  </head>
+  <body>
+    <!-- 头部 -->
+    <div class="header c clearfix">
+
+      <!-- 导航栏 -->
+      <div class="nav">
+        <!-- 豆瓣logo -->
+        <div class="logo">
+          <a href="#"><img src="img/logo2.png" alt="网站的logo" /></a>
+        </div>
+        <!-- 搜索框 -->
+        <span class="inp">
+          <input type="text" class="input" placeholder="书籍、电影、音乐、小组、小站、成员">
+          <input type="submit" class="sub">
+        </span>
+
+        <!-- 右边栏 -->
+        <ul>
+          <li>
+            <a href=""><img src="img/read.png" alt="读书"></a>
+          </li>
+          <li>
+            <a href=""><img src="img/movie.png" alt="电影"></a>
+          </li>
+          <li>
+            <a href=""><img src="img/music.png" alt="音乐"></a>
+          </li>
+          <li>
+            <a href=""><img src="img/group.png" alt="小组"></a>
+          </li>
+          <li>
+            <a href=""><img src="img/city.png" alt="同城"></a>
+          </li>
+          <li>
+            <a href=""><img src="img/fm.png" alt="FM"></a>
+          </li>
+          <li>
+            <a href=""><img src="img/time.png" alt="时间"></a>
+          </li>
+          <li>
+            <a href=""><img src="img/doupin.png" alt="豆品"></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 图片 登录 -->
+    <div class="pic-login">
+
+      <!-- APP广告栏 -->
+      <div class="pic">
+        <img id="app-ad" src="img/app-ad.png">
+        <div class="app clearfix">
+          <p class="app-version">豆瓣<span>6.0</span></p>
+          <p class="app-slogan"></p>
+          <button class="app-download">下载豆瓣 App</button>
+          <div class="app-qr">
+            <a href="javascript: void 0;" class="app-qr-min">
+              <img id="app-qr-min" src="img/app-qr-min.png" width="28" height="28">
+            </a>
+          </div>
+        </div>
+
+        <!-- 右边登录栏 -->
+        <div class="login clearfix">
+          <form id="lzform" name="lzform" method="post">
+            <fieldset>
+              <legend>登录</legend>
+              <div class="item-account">
+                <input type="text" name="form_email" id="form_email" value="" class="inp" placeholder="邮箱 / 手机号" tabIndex="1">
+              </div>
+              <div class="item-passwd">
+                <input name="form_password" placeholder="密码" id="form_password" class="inp" type="password" tabIndex="2">
+                <div class="opt">
+                  <a href="">帮助</a>
+                </div>
+              </div>
+              <div class="item-submit">
+                <input value="登录豆瓣" type="submit" class="bn-submit" tabIndex="4">
+                <input value="注册帐号" type="submit" class="lnk-reg">
+              </div>
+              <div class="item-action">
+                <label for="form_remember">
+                  <input name="remember" type="checkbox" id="form_remember" tabIndex="4">记住我
+                </label>
+                <ul class="item-action-third">
+                  <li>
+                    <a class="wechat" href="#" target="_blank" title="微信登录">
+                      <img src="img/weixin.png" width="14px">
+                    </a>
+                  </li>
+                  <li>
+                    <a class="weibo" href="#" target="_blank" title="微博登录">
+                      <img src="img/weibo.png" width="14px">
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- 中间栏 -->
+    <div class="center">
+      <div class="hot c clearfix">
+
+        <!-- 热点内容栏 -->
+        <div class="hot-content">
+          <div class="main clearfix">
+            <h2>热点内容&nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;&middot;
+              <span class="pl">&nbsp;(<a href="#">更多</a>)</span>
+            </h2>
+            <div class="albums">
+              <ul>
+                <li>
+                  <div class="pic">
+                    <a href="#"><img src="img/weinisi.webp"/></a>
+                  </div>
+                  <a class="wd" href="#">威尼斯的泪（胶卷）</a>
+                  <span class="num">105张照片</span>
+                </li>
+                <li>
+                  <div class="pic">
+                    <a href="#"><img src="img/yinghua.webp"/></a>
+                  </div>
+                  <a class="wd" href="#">还是那些樱花</a>
+                  <span class="num">99张照片</span>
+                </li>
+                <li>
+                  <div class="pic">
+                    <a href="#"><img src="img/wenchuan.webp"/></a>
+                  </div>
+                  <a class="wd" href="#">以此纪念汶川大地震</a>
+                  <span class="num">60张照片</span>
+                </li>
+                <li>
+                  <div class="pic">
+                    <a href="#"><img src="img/miao.webp"/></a>
+                  </div>
+                  <a class="wd" href="#">二喵君·悠游</a>
+                  <span class="num">323张照片</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- 文字栏 -->
+            <div class="notes clearfix">
+              <ul>
+                <li class="first">
+                  <div class="title">
+                    <a class="wd" href="#">永远是孩子————Michael Jackson（上）</a>
+                  </div>
+                  <div class="author">海淀驴王柴斯卡的日记</div>
+                  <p>文/柴斯卡 原载于《Q》  1985年，世界迎来了八十年代的超级巨星————他七岁就已红遍...</p>
+                </li>
+                <li>
+                  <a class="wd" href="#">少时并不知，跟父亲自在相处的时光，并非我们想象的无边无际</a>
+                </li>
+                <li>
+                  <a class="wd" href="#">别去羡慕那些大作家，他们曾经和你一样不想动笔</a>
+                </li>
+                <li>
+                  <a class="wd" href="#">在女巫镇过万圣节</a>
+                </li>
+                <li>
+                  <a class="wd" href="#">知道点冷知识没什么用，但它能让你成为人群中的焦点</a>
+                </li>
+                <li>
+                  <a class="wd" href="#">残酷之下，记录生存美学</a>
+                </li>
+                <li>
+                  <a class="wd" href="#">【手绘游记】滇西南之行-享受宁静的夏日时光</a>
+                </li>
+                <li>
+                  <a class="wd" href="#">爸，节日快乐</a>
+                </li>
+                <li>
+                  <a class="wd" href="#">无尽的秋气</a>
+                </li>
+                <li>
+                  <a class="wd" href="#">唤醒，爹妈在凛冬将至时最重要的技能</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 热点话题栏 -->
+        <div class="hot-topic">
+          <h2>热门话题&nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;&middot;
+            <span class="pl">&nbsp;(<a href="#">去话题广场</a>)</span>
+          </h2>
+          <ul>
+            <li class="topics">
+              <a href="#" class="topics_name">豆瓣不露脸乐器表演大赛</a>
+              <span class="topics_description">视频话题 · 1105466人浏览</span>
+            </li>
+            <li class="topics">
+              <a href="#" class="topics_name">视频·用你的家乡的方言读一首诗</a>
+              <span class="topics_description">视频话题 · 4414人浏览</span>
+            </li>
+            <li class="topics">
+              <a href="#" class="topics_name">世界各地的古着店</a>
+              <span class="topics_description">85096人浏览</span>
+            </li>
+            <li class="topics">
+              <a href="#" class="topics_name">小树林四季观察笔记</a>
+              <span class="topics_description">10615人浏览</span>
+            </li>
+            <li class="topics">
+              <a href="#" class="topics_name">那些校门口的小书店</a>
+              <span class="topics_description">813人浏览</span>
+            </li>
+            <li class="topics">
+              <a href="#" class="topics_name">感觉自己被父母忽略的时刻</a>
+              <span class="topics_description">新话题</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- <script type="text/javascript" src=""></script> -->
+    <!-- 处理ie6的png问题 -->
+    <!--[if IE 6]>
+      <script type="text/javascript" src="js/DD_belatedPNG_0.0.8a-min.js"></script>
+      <script type="text/javascript">DD_belatedPNG.fix("div,img,a,h1");</script>
+    <![endif]-->
+  </body>
+</html>
