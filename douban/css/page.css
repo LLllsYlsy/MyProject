@@ -1,0 +1,411 @@
+/*2018-11-21起*/
+/*demo.html的样式*/
+
+/*
+ * 解决高度塌陷问题clearfix
+ */
+.clearfix:before,
+.clearfix:after{
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.clearfix{
+	zoom:1;
+}
+
+.c{
+	width: 990px;
+	margin: 0 auto;
+}
+
+a{
+	text-decoration: none;
+}
+
+body {
+    padding-top: 30px;
+}
+
+.header{
+	margin: 0 auto 25px;
+	height: 34px;
+}
+
+.nav{
+	height: 34px;
+}
+
+.nav img, input, ul{
+	/*设置垂直居中*/
+	vertical-align: middle;
+}
+
+.nav .logo{
+	width: 160px;
+	height: 31px;
+}
+
+.nav .inp{
+	/*转为块状元素*/
+	display: block;
+	margin: 0;
+	width: 280px;
+    height: 30px;
+    border: 1px solid #ccc;
+    overflow: hidden;
+
+	/*开启相对定位*/
+    position: relative;
+
+    left: 180px;
+    top: -30px;
+}
+
+.nav .input{
+	width: 240px;
+    height: 27px;
+    text-indent: 5px;
+    border: none;
+    /*清除输入框周围发光条*/
+    outline: none;
+}
+
+.nav .sub{
+	border: none;
+	/*设置按钮背景图片*/
+    background: transparent url(../img/sou.png) no-repeat center;
+    overflow: hidden;
+    width: 30px;
+    height: 30px;
+    font-size: 0;
+}
+
+.nav .sub:hover{
+	/* 鼠标指针变为手型 */
+	cursor:pointer;
+}
+
+.nav ul{
+	display: line-block;
+	width: 600px;
+	position: relative;
+
+	left: 480px;
+    top: -60px;
+}
+
+.nav ul li{
+	float: left;
+	height: 25px;
+	margin-right: 15px;
+}
+
+/* 登录栏样式表 */
+.pic-login{
+	height: 180px;
+	background-color: #edf4ed;
+	margin-bottom: 25px;
+}
+
+.pic-login .pic{
+	display: block;
+	height: 180px;
+	margin-left: 70px;
+	margin-right: 142px;
+}
+
+.pic-login .pic #app-ad{
+	vertical-align: middle;
+	position: absolute;
+}
+
+.pic-login .pic .app{
+    position: absolute;
+    height: 120px;
+    margin: 30px 0 30px 520px;
+}
+
+.pic-login .pic .app .app-version{
+	margin: 7px 0;
+    font-size: 25px;
+    color: #111;
+    line-height: 24px;
+    /* 浏览器在绘制文本时将着重考虑易读性 */
+    text-rendering: optimizelegibility;
+}
+
+.pic-login .pic .app span{
+	color: #111;
+    margin-left: 10px;
+    font: 25px 'Helvetica';
+    font-weight: 100;
+}
+
+.pic-login .pic .app .app-slogan{
+	display: block;
+	margin: 0 0 18px;
+    font-size: 0;
+    /*解决margin重叠问题*/
+    overflow:hidden;
+}
+
+.pic-login .pic .app .app-download{
+	border: none;
+    background: #00B51D;
+    overflow: hidden;
+    width: 114px;
+    height: 30px;
+    margin-right: 4px;
+    font-size: 12px;
+    color: #FFF;
+    /* 移到按钮上显示为手型 */
+    cursor: pointer;
+    outline: none;
+    border-radius: 2px;
+}
+
+.pic-login .pic .app .app-qr{
+	display: inline-block;
+	float: right;
+    zoom: 1;
+    position: relative;
+}
+
+.pic-login .pic .app .app-qr-min{
+	display: inline-block;
+	height: 28px;
+    zoom: 1;
+    border: 1px solid #48aa0d;
+    /* 设置边框为圆角矩形 */
+    border-radius: 2px;
+}
+
+.pic-login .login{
+	float: right;
+	margin-top: 25px;
+}
+
+.pic-login .login form{
+	margin: 0;
+    padding: 0;
+    border: 0px;
+}
+
+.pic-login .login legend{
+	display: none;
+}
+
+.pic-login .login input{
+	display: inline-block;
+	height: 28px;
+	font-size: 12px;
+	outline: none;
+    zoom: 1;
+    border: 1px solid #dbe5db;
+    /* 设置边框为圆角矩形 */
+    border-radius: 2px;
+}
+
+.pic-login .login #form_email{
+	width: 252px;
+	margin-bottom: 6px;
+	padding: 0 8px;
+}
+
+.pic-login .login #form_password{
+	width: 222px;
+	border: none;
+	padding: 0 8px;
+	border-radius: 0px;
+}
+
+.pic-login .login .item-passwd{
+	border: 1px solid #dbe5db;
+    border-radius: 2px;
+    margin-bottom: 8px;
+}
+
+.pic-login .login .item-passwd .opt{
+	display: block;
+	vertical-align: middle;
+	background-color: #fff;
+	width: 30px;
+	height: 25px;
+	padding-top: 3px;
+	float: right;
+	border-radius: 2px;
+}
+
+.pic-login .login .item-passwd a{
+	font-size: 12px;
+	color: #ccc;
+}
+
+.pic-login .login .item-passwd a:hover{
+	color: black;
+}
+
+.pic-login .login .bn-submit{
+	background-color: #2A8C70;
+	color: #fff;
+	width: 130px;
+	cursor: pointer;
+}
+
+.pic-login .login .bn-submit:hover{
+	background-color: #268066;
+}
+
+.pic-login .login .lnk-reg{
+	background-color: #edf4ed;
+	color: #268066;
+	width: 130px;
+	border: 1px solid #268066;
+	cursor: pointer;
+}
+
+.pic-login .login .item-action label{
+	font-size: 12px;
+}
+
+.pic-login .login .item-action ul{
+	float: right;
+	width: 36px;
+	margin-top: 8px;
+}
+
+.pic-login .login .item-action li{
+	float: left;
+	margin-left: 4px;
+}
+
+/*中间栏*/
+.center .hot h2{
+    font: 15px Arial, Helvetica, sans-serif;
+    color: #072;
+    margin: 0;
+    line-height: 150%;
+}
+
+.center .hot .pl{
+    font: 12px Arial, Helvetica, sans-serif;
+    line-height: 150%;
+    color: #666666;
+
+}
+
+.center .hot-content{
+	float: left;
+	width: 655px;
+	margin-right: 60px;
+}
+
+.center .hot .hot-content .main .albums{
+    float: left;
+    width: 360px;
+    color: #999;
+    /*设置h1和h2之间的间距*/
+    /*letter-spacing: -0.31em;*/
+}
+
+.center .hot .hot-content .main .albums .pic{
+    display: inline-block;
+    zoom: 1;
+    width: 170px;
+    max-height: 170px;
+    _height: 170px;
+    overflow: hidden;
+    vertical-align: middle;
+    /*规定段落中的文本不进行换行：*/
+    white-space: nowrap;
+}
+
+.center .hot .hot-content .main .albums ul{
+    vertical-align: middle;
+}
+
+.center .hot .hot-content .main .albums li{
+	display: inline-block;
+    width: 170px;
+    vertical-align: top;
+    font-size: 12px;
+    margin: 10px 2px 0 0;
+}
+
+.center .main .albums .wd,.center .main .albums .num{
+	float: left;
+	display: block;
+	margin: 2px 0 2px 0;
+	font: 12px Arial, Helvetica, sans-serif;
+}
+
+.center .main .albums .num{
+	margin: 2px 0 2px 3px;
+}
+
+.center .main .wd{
+	color: #3377AA;
+	font: 12px Arial, Helvetica, sans-serif;
+	line-height: 1.5;
+}
+
+.center .main .wd:hover{
+	color: #fff;
+	background-color: #3377AA;
+}
+
+.center .main .notes{
+	float: right;
+	width: 275px;
+}
+
+.center .main .notes li{
+	/*此元素会作为列表显示*/
+	display: list-item;
+	margin-top: 12px;
+}
+
+.center .main .notes .first{
+	font: 12px Arial, Helvetica, sans-serif;
+	line-height: 1.5;
+}
+
+.center .main .notes .author{
+	line-height: 1.5;
+	color: #999;
+}
+
+.center .hot .hot-topic{
+	float: left;
+}
+
+.center .hot .hot-topic .topics{
+	margin: 10px 0 15px 0;
+}
+
+.center .hot .hot-topic .topics .topics_name{
+	display: inline-block;
+	overflow: hidden;
+	color: #3377AA;
+	font: 14px Arial, Helvetica, sans-serif;
+	line-height: 1.5;
+}
+
+.center .hot .hot-topic .topics .topics_description{
+	display: list-item;
+	color: #999;
+	font: 14px Arial, Helvetica, sans-serif;
+	line-height: 1.4;
+}
+
+.center .hot .hot-topic .topics .topics_name:hover{
+	color: #fff;
+	background-color: #3377AA;
+}
+
+.center{
+	padding: 10px 0;
+    margin-bottom: 30px;
+}
