@@ -1,0 +1,230 @@
+<template>
+  <header class="top-bar">
+    <div class="bar-container">
+      <!-- 内容栏 -->
+      <div class="nav-container">
+        <ul class="nav">
+          <li class="nav-item" v-for="(item, index) in navsData" :key="index" @click="console.log(index)">
+            <template v-if="item.value === '小米商城'">
+              <a :href="item.url">{{item.value}}</a>
+            </template>
+            <template v-else>
+              <a :href="item.url" target="_blank">{{item.value}}</a>
+            </template>
+            <span class="nav-span" v-show="index !== navsData.length - 1">|</span>
+          </li>
+        </ul>
+      </div>
+      <!-- 注册栏 -->
+      <div class="nav-login">
+        <ul class="nav-login-item">
+          <li class="nav-item" v-for="(item, index) in loginData" :key="index">
+            <template v-if="item.value === '消息通知'">
+              <a :href="item.url" style="margin-left: 5px;" target="_blank">{{item.value}}</a>
+            </template>
+            <template v-else>
+              <a :href="item.url" target="_blank">{{item.value}}</a>
+            </template>
+            <span class="nav-span" v-show="index !== loginData.length - 1">|</span>
+          </li>
+        </ul>
+        <div class="nav-cart fa"
+        @mouseenter="cartListShow"
+        @mouseleave="cartListHide">
+          <div class="nav-cart-container" :class="{'active': showFlag}">
+            <i class="fa fa-shopping-cart icon-cart"></i>
+            <a href="http://static.mi.com/cart/">
+              购物车(
+              <span>0</span>
+                )
+            </a>
+          </div>
+          <!-- <transition
+            name="fade"
+            enter-class="fade-enter"
+            enter-to-class="fade-enter-to"
+            leave-class="fade-leave"
+            leave-to-class="fade-leave-to"
+            enter-active-class="fade-enter-active"
+            leave-active-class="fade-leave-active"
+          > -->
+          <transition name="fade">
+            <div class="nav-cart-list" v-show="showFlag">
+              购物车中还没有商品，赶快选购吧！
+            </div>
+          </transition>
+			  </div>
+      </div>
+    </div>
+  </header>
+</template>
+
+<script>
+import { setInterval } from 'timers';
+
+export default {
+  data () {
+    return {
+      navsData: [
+        {value: "小米商城", url: "https://www.mi.com/index.html"},
+        {value: "MIUI", url: "https://www.miui.com/"},
+        {value: "loT", url: "https://iot.mi.com/index.html"},
+        {value: "云服务", url: "https://i.mi.com/"},
+        {value: "金融", url: "https://jr.mi.com?from=micom"},
+        {value: "有品", url: "https://youpin.mi.com/"},
+        {value: "小爱开放平台", url: "https://xiaoai.mi.com/"},
+        {value: "企业团购", url: "https://qiye.mi.com/"},
+        {value: "资质证照", url: "https://www.mi.com/aptitude/list/?id=41"},
+        {value: "协议规则", url: "https://www.mi.com/aptitude/list/"},
+        {value: "下载app", url: "https://www.mi.com/appdownload/"},
+        {value: "Select Region", url: ""}
+      ],
+      loginData: [
+        {value: "登陆", url: "http://order.mi.com/site/login?redirectUrl=http://www.mi.com/index.html"},
+        {value: "注册", url: "https://account.xiaomi.com/pass/register"},
+        {value: "消息通知", url: "http://order.mi.com/message/list"}
+      ],
+      timer: "",
+      showFlag: false
+    }
+  },
+  methods: {
+    cartListShow: function ()  {
+      this.showFlag = true
+      clearInterval(this.timer)
+    },
+    cartListHide: function () {
+      this.showFlag = false
+
+      let _this = this;
+      this.timer = setTimeout(() => {
+        _this.showFlag = false;
+      }, 300);
+    }
+  }
+}
+</script>
+
+<style lang="less">
+.top-bar {
+  width: 100%;
+  height: 40px;
+  background-color: #333;
+  .bar-container {
+    width: 1226px;
+    font-size: 12px;
+    font-weight: 500;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    .nav-container {
+      display: inline-block;
+      .nav-item {
+        a {
+          font-size: 12px;
+          color: #b0b0b0;
+          line-height: 40px;
+          text-decoration: none;
+        }
+        a:hover {
+          color: #ffffff;
+        }
+      }
+    }
+  }
+}
+
+.nav-login {
+  display: flex;
+  .nav-login-item {
+    a {
+      font-size: 12px;
+      color: #b0b0b0;
+      line-height: 40px;
+      text-decoration: none;
+    }
+    a:hover {
+      color: #ffffff;
+    }
+  }
+  .nav-cart {
+    width: 120px;
+    background: #424242;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 25px;
+    cursor: pointer;
+    .nav-cart-container {
+      line-height: 40px;
+      i {
+        font-size: 20px;
+        color: #b0b0b0;
+      }
+      a {
+        color: #b0b0b0;
+        text-decoration: none;
+        line-height: 40px;
+        margin-left: 5px;
+      }
+      span {
+        color: #b0b0b0;
+      }
+      &:hover {
+        background: #fff;
+        a, .icon-cart, span {
+          color: #ff6700;
+        }
+      }
+      .active {
+        background: #fff;
+        a {
+          color: #ff6700;
+        }
+        span {
+          color: #ff6700;
+        }
+      }
+    }
+    .nav-cart-list {
+      position: absolute;
+      right: 0;
+      top: 40px;
+      width: 316px;
+      // height: 96px;
+      line-height: 96px;
+      text-align: center;
+      color: black;
+      background: #fff;
+      box-shadow: 0 0 5px -1px #ccc;
+      z-index: 10;
+      overflow: hidden;
+    }
+  }
+}
+
+.nav-span {
+  color: #424242;
+  font-family: sans-serif;
+  line-height: 40px;
+  margin: 0 5px;
+}
+
+.nav-item {
+  height: 40px;
+  line-height: 40px;
+  display: inline-block;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: all .10s ease;
+  height: 96px;
+}
+
+.fade-enter, .fade-leave-to {
+  height: 0;
+}
+
+.fade-enter-to, .fade-leave {
+  height: 96px;
+}
+</style>
