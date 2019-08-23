@@ -60,31 +60,29 @@
 </template>
 
 <script>
-import { setInterval } from 'timers';
-
 export default {
   data () {
     return {
       navsData: [
-        {value: "小米商城", url: "https://www.mi.com/index.html"},
-        {value: "MIUI", url: "https://www.miui.com/"},
-        {value: "loT", url: "https://iot.mi.com/index.html"},
-        {value: "云服务", url: "https://i.mi.com/"},
-        {value: "金融", url: "https://jr.mi.com?from=micom"},
-        {value: "有品", url: "https://youpin.mi.com/"},
-        {value: "小爱开放平台", url: "https://xiaoai.mi.com/"},
-        {value: "企业团购", url: "https://qiye.mi.com/"},
-        {value: "资质证照", url: "https://www.mi.com/aptitude/list/?id=41"},
-        {value: "协议规则", url: "https://www.mi.com/aptitude/list/"},
-        {value: "下载app", url: "https://www.mi.com/appdownload/"},
-        {value: "Select Region", url: ""}
+        {value: '小米商城', url: 'https://www.mi.com/index.html'},
+        {value: 'MIUI', url: 'https://www.miui.com/'},
+        {value: 'loT', url: 'https://iot.mi.com/index.html'},
+        {value: '云服务', url: 'https://i.mi.com/'},
+        {value: '金融', url: 'https://jr.mi.com?from=micom'},
+        {value: '有品', url: 'https://youpin.mi.com/'},
+        {value: '小爱开放平台', url: 'https://xiaoai.mi.com/'},
+        {value: '企业团购', url: 'https://qiye.mi.com/'},
+        {value: '资质证照', url: 'https://www.mi.com/aptitude/list/?id=41'},
+        {value: '协议规则', url: 'https://www.mi.com/aptitude/list/'},
+        {value: '下载app', url: 'https://www.mi.com/appdownload/'},
+        {value: 'Select Region', url: ''}
       ],
       loginData: [
-        {value: "登陆", url: "http://order.mi.com/site/login?redirectUrl=http://www.mi.com/index.html"},
-        {value: "注册", url: "https://account.xiaomi.com/pass/register"},
-        {value: "消息通知", url: "http://order.mi.com/message/list"}
+        {value: '登陆', url: 'http://order.mi.com/site/login?redirectUrl=http://www.mi.com/index.html'},
+        {value: '注册', url: 'https://account.xiaomi.com/pass/register'},
+        {value: '消息通知', url: 'http://order.mi.com/message/list'}
       ],
-      timer: "",
+      timer: '',
       showFlag: false
     }
   },
@@ -94,7 +92,7 @@ export default {
       clearInterval(this.timer)
     },
     cartListHide: function () {
-      this.showFlag = false
+      // this.showFlag = false
 
       let _this = this;
       this.timer = setTimeout(() => {
