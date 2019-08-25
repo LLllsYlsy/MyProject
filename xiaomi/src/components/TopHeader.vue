@@ -16,7 +16,24 @@
         </ul>
       </div>
       <div class="header-search-container">
-
+        <input
+          @focus="searchListShow"
+					@blur="searchListHide"
+					class="search-input"
+          :class="{'active': focusFlag}"
+          type="search"
+          value="">
+				<label class="search-btn" :class="{'active': focusFlag}" style="border-left: 0;">
+					<i class="fa fa-search" aria-hidden="true"></i>
+				</label>
+        <transition name="listrans">
+          <ul class="search-hots" v-show="hotsListFlag">
+            <li class="hots-item" v-for="(item, index) in hots" :key="index">{{item}}</li>
+          </ul>
+        </transition>
+        <ul class="search-list" v-show="!hotsListFlag">
+          <li class="list-item" v-for="(item, index) in searchHot" :key="index">{{item}}</li>
+        </ul>
       </div>
     </div>
     <transition name="fade">
@@ -47,6 +64,9 @@ export default {
       menusListFlag: false,
       timer: '',
       menusItemData: this.xiaomi,
+      hotsListFlag: true,
+      focusFlag: false,
+      hots: ['小米9', '小米9 SE'],
       navs: [
         {value: '小米手机', type: 'xiaomi'},
 				{value: 'Redmi 红米', type: 'redmi'},
@@ -113,14 +133,17 @@ export default {
         {value: '小米小爱触屏音箱', price: '299', sub: false, source: 'https://www.mi.com/aispeaker-touch/', imgurl: 'https://cdn.cnbj0.fds.api.mi-img.com/b2c-mimall-media/f6e585a4bf5c0f744ca60f19ecd6fadf.jpg'},
         {value: '小爱万能遥控版', price: '179', sub: false, source: 'https://www.mi.com/aispeaker-control/', imgurl: 'https://cdn.cnbj0.fds.api.mi-img.com/b2c-mimall-media/df136199221a23299bc5348f37230a86.jpg'},
         {value: '查看全部', type: '智能硬件', sub: false, source: 'https://www.mi.com/p/3469.html?client_id=180100041086&masid=17409.0245', imgurl: 'https://cdn.cnbj0.fds.api.mi-img.com/b2c-mimall-media/c1016ddffd2ac5808c4bebcdbefd413a.jpg'}
-      ]
+      ],
+      searchHot: ['小米 9','Redmi K20 pro', 'Redmi K20', 'Redmi Note 7 Pro', 'Redmi note 7', '小米电视4c', '电视32英寸', '笔记本pro', '小爱音箱', '净水器']
     }
   },
   methods: {
+    // 菜单显示区域
     menusListShow: function (type) {
       if (type) {
         this.menusItemData = this[type];
       }
+
       this.menusListFlag = true;
       clearTimeout(this.timer);
     },
@@ -129,6 +152,15 @@ export default {
       this.timer = setTimeout(function () {
 				_this.menusListFlag = false;
 			}, 300);
+    },
+    // 搜索框下拉列表
+    searchListShow: function () {
+      this.hotsListFlag = false;
+      this.focusFlag = true;
+    },
+    searchListHide: function () {
+      this.hotsListFlag = true;
+      this.focusFlag = false;
     }
   }
 }
@@ -144,11 +176,11 @@ export default {
       margin: 0 auto;
       display: flex;
       align-items: center;
+      justify-content: space-between;
       .mi-icon {
         display: block;
         width: 55px;
         height: 55px;
-        margin-right: 7px;
         cursor: pointer;
         background: #ff6700 url('../assets/image/home-logo.png') no-repeat;
         background-position: -55px 0;
@@ -160,22 +192,106 @@ export default {
         }
 
       .header-navs-container {
+        width: 820px;
         display: flex;
-        padding: 12px 0 0 30px;
         height: 100%;
         .divider {
           width: 142px;
-          height: 88px;
+          height: 100px;
         }
 
         .navs {
           display: flex;
-          line-height: 88px;
+          line-height: 100px;
           .navs-item > a {
             cursor: pointer;
             padding: 26px 10px 38px;
             &:hover {
               color: #ff6700;
+            }
+          }
+        }
+      }
+
+      .header-search-container {
+        height: 50px;
+        position: relative;
+        display: flex;
+        .search-input {
+          width: 240px;
+          height: 100%;
+          outline: none;
+          font-size: 15px;
+          border: 1px solid #e0e0e0;
+        }
+
+        .search-btn {
+          border: 1px solid #e0e0e0;
+          cursor: pointer;
+          i {
+            font-size: 19px;
+            width: 48px;
+            background: #fff;
+            color: #616161;
+            line-height: 48px;
+
+            &:hover {
+              background:#ff6700;
+              color: #fff;
+              transition: all .20s ease;
+            }
+          }
+
+          &:hover {
+            border: 1px solid #ff6700;
+            transition: all .20s ease;
+          }
+        }
+
+        .active {
+          transition: all .20s ease;
+          border: 1px solid #ff6700;
+        }
+
+        .search-hots {
+          position: absolute;
+          display: flex;
+          top: 14px;
+          right: 55px;
+          z-index: 2;
+          .hots-item {
+            width: auto;
+            height: 18px;
+            line-height: 18px;
+            padding: 0 5px;
+            font-size: 12px;
+            background: #eee;
+            color: #757575;
+            margin-right: 5px;
+            cursor: pointer;
+            &:hover {
+              color: #fff;
+              background: #ff6300;
+            }
+          }
+        }
+
+        .search-list {
+          position: absolute;
+          width: 240px;
+          top: 50px;
+          height: auto;
+          border: 1px solid #ff6700;
+          border-top: 0;
+          text-align: left;
+          .list-item {
+            cursor: pointer;
+            padding: 6px 15px;
+            font-size: 12px;
+            background: #fff;
+            color: #424242;
+            &:hover {
+              background: #fafafa;
             }
           }
         }
@@ -246,19 +362,31 @@ export default {
     }
   }
 
+  // 菜单选项
   .fade-enter-active, .fade-leave-active {
     transition: all .30s ease-in;
     height: 230px;
-    // opacity: 1;
   }
 
   .fade-enter, .fade-leave-to {
     height: 0;
-    // opacity: 0;
   }
 
   .fade-enter-to, .fade-leave {
     height: 230px;
-    // opacity: 1;
+  }
+
+  // 搜索热点
+  .listrans-enter-active, .listrans-leave-active {
+    transition: all .10s ease-in;
+    opacity: 1;
+  }
+
+  .listrans-enter, .listrans-leave-to {
+      opacity: 0;
+    }
+
+  .listrans-enter-to, .listrans-leave {
+    opacity: 1;
   }
 </style>

@@ -2,12 +2,14 @@
   <div>
     <top-bar></top-bar>
     <top-header></top-header>
+    <menu-banner></menu-banner>
   </div>
 </template>
 
 <script>
-import TopBar from "../components/TopBar"
-import TopHeader from "../components/TopHeader"
+import TopBar from '../components/TopBar'
+import TopHeader from '../components/TopHeader'
+import MenuBanner from '../components/MenuBanner'
 
 export default {
   data () {
@@ -17,7 +19,8 @@ export default {
   },
   components: {
     'top-bar': TopBar,
-    'TopHeader': TopHeader
+    'TopHeader': TopHeader,
+    'MenuBanner': MenuBanner
   }
 }
 </script>

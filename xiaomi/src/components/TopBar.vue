@@ -48,9 +48,9 @@
             enter-active-class="fade-enter-active"
             leave-active-class="fade-leave-active"
           > -->
-          <transition name="fade">
+          <transition name="fadein">
             <div class="nav-cart-list" v-show="showFlag">
-              购物车中还没有商品，赶快选购吧！
+              <div class="cart-list-word">购物车中还没有商品，赶快选购吧！</div>
             </div>
           </transition>
 			  </div>
@@ -152,6 +152,7 @@ export default {
     line-height: 40px;
     margin-left: 25px;
     cursor: pointer;
+    position: relative;
     .nav-cart-container {
       line-height: 40px;
       i {
@@ -188,14 +189,16 @@ export default {
       right: 0;
       top: 40px;
       width: 316px;
-      // height: 96px;
-      line-height: 96px;
-      text-align: center;
-      color: black;
       background: #fff;
       box-shadow: 0 0 5px -1px #ccc;
       z-index: 10;
       overflow: hidden;
+      .cart-list-word {
+        height: 96px;
+        line-height: 96px;
+        text-align: center;
+        color: black;
+      }
     }
   }
 }
@@ -213,16 +216,16 @@ export default {
   display: inline-block;
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: all .10s ease;
+.fadein-enter-active, .fadein-leave-active {
+  transition: all .20s ease;
   height: 96px;
 }
 
-.fade-enter, .fade-leave-to {
+.fadein-enter, .fadein-leave-to {
   height: 0;
 }
 
-.fade-enter-to, .fade-leave {
+.fadein-enter-to, .fadein-leave {
   height: 96px;
 }
 </style>
