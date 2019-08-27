@@ -36,7 +36,7 @@
         </ul>
       </div>
     </div>
-    <transition name="fade">
+    <transition name="menutrans">
       <div class="menus-list"
       @mouseenter="menusListShow()"
       @mouseleave="menusListHide()"
@@ -139,7 +139,7 @@ export default {
   },
   methods: {
     // 菜单显示区域
-    menusListShow: function (type) {
+    menusListShow (type) {
       if (type) {
         this.menusItemData = this[type];
       }
@@ -147,18 +147,18 @@ export default {
       this.menusListFlag = true;
       clearTimeout(this.timer);
     },
-    menusListHide: function () {
+    menusListHide () {
       let _this = this;
-      this.timer = setTimeout(function () {
+      this.timer = setTimeout(() => {
 				_this.menusListFlag = false;
 			}, 300);
     },
     // 搜索框下拉列表
-    searchListShow: function () {
+    searchListShow () {
       this.hotsListFlag = false;
       this.focusFlag = true;
     },
-    searchListHide: function () {
+    searchListHide () {
       this.hotsListFlag = true;
       this.focusFlag = false;
     }
@@ -284,6 +284,7 @@ export default {
           border: 1px solid #ff6700;
           border-top: 0;
           text-align: left;
+          z-index: 21;
           .list-item {
             cursor: pointer;
             padding: 6px 15px;
@@ -308,7 +309,7 @@ export default {
       border-top: 1px solid #e0e0e0;
       box-shadow: 0 3px 4px rgba(0, 0, 0, .18);
       overflow: hidden;
-      z-index: 10;
+      z-index: 20;
       .menus {
         padding: 30px 0 30px 110px;
         min-width: 1500px;
@@ -363,16 +364,16 @@ export default {
   }
 
   // 菜单选项
-  .fade-enter-active, .fade-leave-active {
+  .menutrans-enter-active, .menutrans-leave-active {
     transition: all .30s ease-in;
     height: 230px;
   }
 
-  .fade-enter, .fade-leave-to {
+  .menutrans-enter, .menutrans-leave-to {
     height: 0;
   }
 
-  .fade-enter-to, .fade-leave {
+  .menutrans-enter-to, .menutrans-leave {
     height: 230px;
   }
 

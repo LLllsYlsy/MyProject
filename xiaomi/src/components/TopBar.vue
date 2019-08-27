@@ -87,11 +87,11 @@ export default {
     }
   },
   methods: {
-    cartListShow: function ()  {
-      this.showFlag = true
-      clearInterval(this.timer)
+    cartListShow ()  {
+      this.showFlag = true;
+      clearInterval(this.timer);
     },
-    cartListHide: function () {
+    cartListHide () {
       // this.showFlag = false
 
       let _this = this;
