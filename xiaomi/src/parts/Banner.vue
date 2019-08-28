@@ -2,9 +2,6 @@
   <div class="banner">
     <div class="banner-prev" @click="prev"></div>
     <div class="banner-next" @click="next"></div>
-    <div class="banner-points">
-      <a class="banner-point" @click="jump(index)" :class="{'active': index === imgIndex}" v-for="(item, index) in banners.length" :key="index"></a>
-    </div>
     <transition-group tag="ul" name="bannertrans" class="banner-container">
       <li class="image-container"
       v-for="(item, index) in banners"
@@ -15,6 +12,9 @@
         </a>
       </li>
     </transition-group>
+    <div class="banner-points">
+      <a class="banner-point" @click="jump(index)" :class="{'active': index === imgIndex}" v-for="(item, index) in banners.length" :key="index"></a>
+    </div>
   </div>
 </template>
 
@@ -70,7 +70,7 @@ export default {
       width: 41px;
       height: 69px;
       margin-top: -35px;
-      z-index: 10;
+      z-index: 5;
       cursor: pointer;
       outline: none;
       background: url(../assets/image/icon-slides.png) no-repeat -84px 50%;
@@ -87,7 +87,7 @@ export default {
       width: 41px;
       height: 69px;
       margin-top: -35px;
-      z-index: 10;
+      z-index: 5;
       cursor: pointer;
       outline: none;
       background: url(../assets/image/icon-slides.png) no-repeat -125px 50%;
@@ -134,7 +134,7 @@ export default {
 
     .banner-container {
       width: 100%;
-      height: 464px;
+      height: 460px;
       overflow: hidden;
       .image-container {
         width: 100%;
