@@ -2,7 +2,7 @@
   <div class="banner">
     <div class="banner-prev" @click="prev"></div>
     <div class="banner-next" @click="next"></div>
-    <transition-group tag="ul" name="bannertrans" class="banner-container">
+    <transition-group tag="ul" name="banner-trans" class="banner-container">
       <li class="image-container"
       v-for="(item, index) in banners"
       v-show="index === imgIndex"
@@ -150,20 +150,20 @@ export default {
   }
 
   // 轮播图
-  .bannertrans-enter-active {
+  .banner-trans-enter-active {
     transition: all .10s ease-in-out;
     opacity: 1;
   }
 
-  .bannertrans-leave-active {
+  .banner-trans-leave-active {
     opacity: 0;
   }
 
-  .bannertrans-enter, .bannertrans-leave-to {
+  .banner-trans-enter, .banner-trans-leave-to {
       opacity: 0;
     }
 
-  .bannertrans-enter-to, .bannertrans-leave {
+  .banner-trans-enter-to, .banner-trans-leave {
     opacity: 1;
   }
 </style>

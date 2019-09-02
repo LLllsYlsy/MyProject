@@ -26,7 +26,7 @@
 				<label class="search-btn" :class="{'active': focusFlag}" style="border-left: 0;">
 					<i class="fa fa-search" aria-hidden="true"></i>
 				</label>
-        <transition name="listrans">
+        <transition name="list-trans">
           <ul class="search-hots" v-show="hotsListFlag">
             <li class="hots-item" v-for="(item, index) in hots" :key="index">{{item}}</li>
           </ul>
@@ -36,7 +36,7 @@
         </ul>
       </div>
     </div>
-    <transition name="menutrans">
+    <transition name="menu-trans">
       <div class="menus-list"
       @mouseenter="menusListShow()"
       @mouseleave="menusListHide()"
@@ -284,7 +284,7 @@ export default {
           border: 1px solid #ff6700;
           border-top: 0;
           text-align: left;
-          z-index: 21;
+          z-index: 16;
           .list-item {
             cursor: pointer;
             padding: 6px 15px;
@@ -309,7 +309,7 @@ export default {
       border-top: 1px solid #e0e0e0;
       box-shadow: 0 3px 4px rgba(0, 0, 0, .18);
       overflow: hidden;
-      z-index: 20;
+      z-index: 15;
       .menus {
         padding: 30px 0 30px 110px;
         min-width: 1500px;
@@ -364,30 +364,30 @@ export default {
   }
 
   // 菜单选项
-  .menutrans-enter-active, .menutrans-leave-active {
+  .menu-trans-enter-active, .menu-trans-leave-active {
     transition: all .30s ease-in;
     height: 230px;
   }
 
-  .menutrans-enter, .menutrans-leave-to {
+  .menu-trans-enter, .menu-trans-leave-to {
     height: 0;
   }
 
-  .menutrans-enter-to, .menutrans-leave {
+  .menu-trans-enter-to, .menu-trans-leave {
     height: 230px;
   }
 
   // 搜索热点
-  .listrans-enter-active, .listrans-leave-active {
+  .list-trans-enter-active, .list-trans-leave-active {
     transition: all .10s ease-in;
     opacity: 1;
   }
 
-  .listrans-enter, .listrans-leave-to {
+  .list-trans-enter, .list-trans-leave-to {
       opacity: 0;
     }
 
-  .listrans-enter-to, .listrans-leave {
+  .list-trans-enter-to, .list-trans-leave {
     opacity: 1;
   }
 </style>

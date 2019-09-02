@@ -4,13 +4,30 @@
       <!-- 内容栏 -->
       <div class="nav-container">
         <ul class="nav">
-          <li class="nav-item" v-for="(item, index) in navsData" :key="index" @click="console.log(index)">
-            <template v-if="item.value === '小米商城'">
+          <li class="nav-item" v-for="(item, index) in navsData" :key="index">
+            <div class="item-style" v-if="item.value === '小米商城'">
               <a :href="item.url">{{item.value}}</a>
-            </template>
-            <template v-else>
+            </div>
+            <div class="item-style" v-if="item.value === '下载app'"
+            @mouseenter="downloadQRCodeShow"
+            @mouseleave="downloadQRCodeHide">
+              <a target="_blank"
+              :href="item.url">
+                {{item.value}}
+              </a>
+              <span class="triangle" v-show="dowmloadFlag"></span>
+              <div class="app-qrcode-container">
+                <transition name="qrcode-trans">
+                  <div class="app-qrcode" v-show="dowmloadFlag">
+                    <img src="https://i1.mifile.cn/f/i/17/appdownload/download.png?1" alt="小米商城">
+                    <span>小米商城APP</span>
+                  </div>
+                </transition>
+              </div>
+            </div>
+            <div class="item-style" v-if="item.value !== '小米商城' && item.value !== '下载app'">
               <a :href="item.url" target="_blank">{{item.value}}</a>
-            </template>
+            </div>
             <span class="nav-span" v-show="index !== navsData.length - 1">|</span>
           </li>
         </ul>
@@ -48,7 +65,7 @@
             enter-active-class="fade-enter-active"
             leave-active-class="fade-leave-active"
           > -->
-          <transition name="fadein">
+          <transition name="fade-in">
             <div class="nav-cart-list" v-show="showFlag">
               <div class="cart-list-word">购物车中还没有商品，赶快选购吧！</div>
             </div>
@@ -60,6 +77,7 @@
 </template>
 
 <script>
+import { clearInterval } from 'timers';
 export default {
   data () {
     return {
@@ -83,7 +101,9 @@ export default {
         {value: '消息通知', url: 'http://order.mi.com/message/list'}
       ],
       timer: '',
-      showFlag: false
+      codeTimer: '',
+      showFlag: false,
+      dowmloadFlag: false
     }
   },
   methods: {
@@ -97,6 +117,18 @@ export default {
       let _this = this;
       this.timer = setTimeout(() => {
         _this.showFlag = false;
+      }, 300);
+    },
+    downloadQRCodeShow () {
+      this.dowmloadFlag = true;
+      clearInterval(this.codeTimer);
+    },
+    downloadQRCodeHide () {
+      // this.dowmloadFlag = false;
+
+      let _this = this;
+      this.codeTimer = setTimeout(() => {
+        _this.dowmloadFlag = false;
       }, 300);
     }
   }
@@ -118,14 +150,17 @@ export default {
     .nav-container {
       display: inline-block;
       .nav-item {
-        a {
-          font-size: 12px;
-          color: #b0b0b0;
-          line-height: 40px;
-          text-decoration: none;
-        }
-        a:hover {
-          color: #ffffff;
+        .item-style {
+          a {
+            display: inline-block;
+            font-size: 12px;
+            color: #b0b0b0;
+            line-height: 40px;
+            text-decoration: none;
+          }
+          a:hover {
+            color: #ffffff;
+          }
         }
       }
     }
@@ -214,18 +249,82 @@ export default {
   height: 40px;
   line-height: 40px;
   display: inline-block;
+  position: relative;
+  .item-style {
+    display: inline-block;
+    .triangle {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 0;
+      margin-left: -8px;
+      border-width: 0 8px 8px;
+      border-style: solid;
+      border-color: transparent transparent #fff;
+    }
+
+    .app-qrcode-container {
+      position: relative;
+      display: inline-block;
+      .app-qrcode {
+        position: absolute;
+        display: inline-block;
+        top: 16px;
+        left: 50%;
+        width: 124px;
+        background: #fff;
+        margin-left: -75px;
+        box-shadow: 0 3px 3px #aaa;
+        overflow: hidden;
+        z-index: 16;
+        cursor: pointer;
+
+        img {
+          display: block;
+          margin: 18px auto 12px;
+          width: 90px;
+          height: 90px;
+        }
+
+        span {
+          display: block;
+          text-align: center;
+          font-size: 14px;
+          color: #333;
+          line-height: 1;
+          margin-bottom: 12px;
+        }
+      }
+    }
+  }
 }
 
-.fadein-enter-active, .fadein-leave-active {
+// 购物车
+.fade-in-enter-active, .fade-in-leave-active {
   transition: all .20s ease;
   height: 96px;
 }
 
-.fadein-enter, .fadein-leave-to {
+.fade-in-enter, .fade-in-leave-to {
   height: 0;
 }
 
-.fadein-enter-to, .fadein-leave {
+.fade-in-enter-to, .fade-in-leave {
   height: 96px;
+}
+
+// app二维码
+.qrcode-trans-enter-active, .qrcode-trans-leave-active {
+  transition: all .3s ease;
+  height: 146px;
+}
+
+.qrcode-trans-enter, .qrcode-trans-leave-to {
+  height: 0;
+}
+
+.qrcode-trans-enter-to, .qrcode-trans-leave {
+  height: 146px;
 }
 </style>
