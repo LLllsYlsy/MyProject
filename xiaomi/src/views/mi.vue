@@ -3,6 +3,7 @@
     <top-bar></top-bar>
     <top-header></top-header>
     <menu-banner></menu-banner>
+    <sub-channel></sub-channel>
   </div>
 </template>
 
@@ -10,6 +11,7 @@
 import TopBar from '../components/TopBar'
 import TopHeader from '../components/TopHeader'
 import MenuBanner from '../components/MenuBanner'
+import SubChannel from '../components/SubChannel'
 
 export default {
   data () {
@@ -20,7 +22,8 @@ export default {
   components: {
     'top-bar': TopBar,
     'TopHeader': TopHeader,
-    'MenuBanner': MenuBanner
+    'MenuBanner': MenuBanner,
+    'SubChannel': SubChannel
   }
 }
 </script>
