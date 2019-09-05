@@ -114,15 +114,17 @@ export default {
         display: flex;
         justify-content: space-between;
         .promo-item {
+          height: 170px;
           &:hover {
             box-shadow: 0 5px 30px #ccc;
           }
 
           a {
             display: inline-block;
+            height: 100%;
             img {
               width: 316px;
-              height: 170px;
+              height: 100%;
             }
           }
         }

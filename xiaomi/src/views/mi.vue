@@ -4,6 +4,7 @@
     <top-header></top-header>
     <menu-banner></menu-banner>
     <sub-channel></sub-channel>
+    <flash-sale></flash-sale>
   </div>
 </template>
 
@@ -12,6 +13,7 @@ import TopBar from '../components/TopBar'
 import TopHeader from '../components/TopHeader'
 import MenuBanner from '../components/MenuBanner'
 import SubChannel from '../components/SubChannel'
+import FlashSale from '../components/FlashSale'
 
 export default {
   data () {
@@ -23,7 +25,8 @@ export default {
     'top-bar': TopBar,
     'TopHeader': TopHeader,
     'MenuBanner': MenuBanner,
-    'SubChannel': SubChannel
+    'SubChannel': SubChannel,
+    'FlashSale': FlashSale,
   }
 }
 </script>
