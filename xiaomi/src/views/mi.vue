@@ -1,10 +1,12 @@
 <template>
-  <div>
+  <div class="index-page">
     <top-bar></top-bar>
     <top-header></top-header>
     <menu-banner></menu-banner>
     <sub-channel></sub-channel>
-    <flash-sale></flash-sale>
+    <div class="gray-page">
+      <flash-sale></flash-sale>
+    </div>
   </div>
 </template>
 
@@ -17,9 +19,7 @@ import FlashSale from '../components/FlashSale'
 
 export default {
   data () {
-    return {
-
-    }
+    return {}
   },
   components: {
     'top-bar': TopBar,
@@ -32,5 +32,12 @@ export default {
 </script>
 
 <style lang="less">
-
+  .index-page {
+    .gray-page {
+      display: flex;
+      width: 100%;
+      height: auto;
+      background-color: #f5f5f5;
+    }
+  }
 </style>
