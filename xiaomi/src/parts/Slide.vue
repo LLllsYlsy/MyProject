@@ -1,12 +1,13 @@
 <template>
   <div class="sale-slide">
-    <!-- <transition-group name="slide-trans" class="slide-container" tag="ul">
+    <transition-group tag="ul"
+    name="slide-trans"
+    class="slide-container"
+    :style="transformStyle">
       <li class="slide-item"
       v-for="(item, index) in slideItems"
       :key="index"
-      :style="{'border-top-color': item.topColor}"
-      :data-index="index"
-      v-show="parseInt(index / 4) === slideIndex">
+      :style="{'border-top-color': item.topColor}">
         <a :href="item.url">
           <img :src="item.src" :alt="item.value">
           <h3 class="name">{{item.value}}</h3>
@@ -17,27 +18,7 @@
           </div>
         </a>
       </li>
-    </transition-group> -->
-    <ul class="slide-container"
-    v-for="(list, key) in slideListMatch"
-    :key="key"
-    :data-key="key">
-      <li class="slide-item"
-      v-for="(item, index) in list"
-      :key="index"
-      :style="{'border-top-color': item.topColor}"
-      :data-index="index">
-        <a :href="item.url">
-          <img :src="item.src" :alt="item.value">
-          <h3 class="name">{{item.value}}</h3>
-          <span class="desc">{{item.desc}}</span>
-          <div class="price">
-            <span>{{item.newPrice}}元</span>
-            <del>{{item.oldPrice}}元</del>
-          </div>
-        </a>
-      </li>
-    </ul>
+    </transition-group>
   </div>
 </template>
 
@@ -47,42 +28,48 @@ export default {
     return {
       slideIndex: 0,
       slideTimer: '',
+      Xvalue: 0
     }
   },
   props: ['slideItems'],
   methods: {
     next () {
-      // const lastIndex = parseInt(this.slideItems.length / 4);
-			// if (this.slideIndex < lastIndex) {
-			// 	this.slideIndex += 1;
-			// } else {
-			// 	this.slideIndex = 0;
-			// }
+      const lastIndex = parseInt(this.slideItems.length / 4);
+			if (this.slideIndex < lastIndex) {
+        if (this.slideIndex === lastIndex - 1 && this.slideItems.length % 4 !== 0) {
+          this.slideIndex += 1;
+          this.Xvalue = - ((this.slideIndex - 1) * 992 + (this.slideItems.length % 4) * 248);
+        } else {
+          this.slideIndex += 1;
+          this.Xvalue = - (this.slideIndex * 992);
+        }
+			} else {
+        this.slideIndex = 0;
+        this.Xvalue = 0;
+			}
     },
     prev () {
-      // const lastIndex = parseInt(this.slideItems.length / 4);
-			// if (this.slideIndex > 0) {
-			// 	this.slideIndex -= 1;
-			// } else {
-			// 	this.slideIndex = lastIndex;
-			// }
+      const lastIndex = parseInt(this.slideItems.length / 4);
+			if (this.slideIndex > 0) {
+        this.slideIndex -= 1;
+        this.Xvalue = - (this.slideIndex * 992);
+			} else {
+        this.slideIndex = lastIndex;
+        this.Xvalue =  - (lastIndex * 992);
+			}
     },
     play () {
-      // let _this = this;
-			// clearInterval(this.slideTimer);
-			// this.slideTimer = setInterval(() => {
-			// 	_this.next();
-			// }, 5000);
+      let _this = this;
+			clearInterval(this.slideTimer);
+			this.slideTimer = setInterval(() => {
+				_this.next();
+			}, 5000);
     }
   },
   computed: {
-    slideListMatch () {
-      if (this.slideItems && this.slideItems.length) {
-        const matchData = [];
-        for(let i = 0; i < this.slideItems.length; i += 4){
-          matchData.push(this.slideItems.slice(i, i + 4));
-        }
-        return matchData;
+    transformStyle () {
+      return {
+        'transform': `translate3d(${this.Xvalue}px, 0, 0)`
       }
     }
   },
@@ -103,6 +90,7 @@ export default {
     .slide-container {
       height: 340px;
       display: flex;
+      transition: all 1s ease-in-out;
       .slide-item {
         display: block;
         width: 234px;
@@ -111,7 +99,6 @@ export default {
         border-top-style: solid;
         text-align: center;
         background: #fff;
-        transition: all .8s ease;
         a {
           display: block;
           height: 300px;

@@ -45,7 +45,7 @@ export default {
 			}
     },
     play () {
-      var _this = this;
+      let _this = this;
 			clearInterval(this.timer);
 			this.timer = setInterval(() => {
 				_this.next();

@@ -6,6 +6,7 @@
     <sub-channel></sub-channel>
     <div class="gray-page">
       <flash-sale></flash-sale>
+      <goods-sale></goods-sale>
     </div>
   </div>
 </template>
@@ -16,17 +17,19 @@ import TopHeader from '../components/TopHeader'
 import MenuBanner from '../components/MenuBanner'
 import SubChannel from '../components/SubChannel'
 import FlashSale from '../components/FlashSale'
+import GoodsSale from '../components/GoodsSale'
 
 export default {
   data () {
     return {}
   },
   components: {
-    'top-bar': TopBar,
+    'TopBar': TopBar,
     'TopHeader': TopHeader,
     'MenuBanner': MenuBanner,
     'SubChannel': SubChannel,
     'FlashSale': FlashSale,
+    'GoodsSale': GoodsSale,
   }
 }
 </script>
@@ -35,6 +38,7 @@ export default {
   .index-page {
     .gray-page {
       display: flex;
+      flex-direction: column;
       width: 100%;
       height: auto;
       background-color: #f5f5f5;

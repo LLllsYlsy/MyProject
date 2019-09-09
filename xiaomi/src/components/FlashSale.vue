@@ -120,7 +120,7 @@ export default {
     width: 1226px;
     height: auto;
     padding-top: 4px;
-    margin: 0 auto 22px;
+    margin: 0 auto;
   }
 
   .box-header {
