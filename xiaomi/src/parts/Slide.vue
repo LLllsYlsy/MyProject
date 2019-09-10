@@ -1,8 +1,6 @@
 <template>
   <div class="sale-slide">
-    <transition-group tag="ul"
-    name="slide-trans"
-    class="slide-container"
+    <ul class="slide-container"
     :style="transformStyle">
       <li class="slide-item"
       v-for="(item, index) in slideItems"
@@ -18,7 +16,7 @@
           </div>
         </a>
       </li>
-    </transition-group>
+    </ul>
   </div>
 </template>
 
@@ -144,10 +142,5 @@ export default {
         }
       }
     }
-  }
-
-  // 滚动轮播
-  .slide-trans-enter, .slide-trans-leave-active  {
-      transform: translate(100%, 0);
   }
 </style>
