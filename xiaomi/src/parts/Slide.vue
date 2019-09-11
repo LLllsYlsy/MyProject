@@ -8,8 +8,8 @@
       :style="{'border-top-color': item.topColor}">
         <a :href="item.url">
           <img :src="item.src" :alt="item.value">
-          <h3 class="name">{{item.value}}</h3>
-          <span class="desc">{{item.desc}}</span>
+          <h3 class="name ellipsis">{{item.value}}</h3>
+          <span class="desc ellipsis">{{item.desc}}</span>
           <div class="price">
             <span>{{item.newPrice}}元</span>
             <del>{{item.oldPrice}}元</del>
@@ -115,10 +115,7 @@ export default {
           margin: 0 20px 3px;
           font-size: 14px;
           font-weight: 400;
-          text-overflow: ellipsis;
           color: #212121;
-          overflow: hidden;
-          white-space: nowrap;
         }
 
         .desc {
@@ -126,13 +123,11 @@ export default {
           height: 18px;
           margin: 0 20px 12px;
           font-size: 12px;
-          text-overflow: ellipsis;
           color: #b0b0b0;
-          overflow: hidden;
-          white-space: nowrap;
         }
 
         .price {
+          margin: 0 10px 14px;
           font-size: 14px;
           color: #ff6709;
           del {
@@ -142,5 +137,12 @@ export default {
         }
       }
     }
+  }
+
+  .ellipsis {
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 </style>
