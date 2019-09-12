@@ -7,7 +7,8 @@
           <li class="tab-item"
           v-for="(item, index) in goodsItem.tabList"
           :key="index"
-          :class="{'active': true}">{{item.value}}</li>
+          :class="{'active': item.type === type}"
+          @mouseenter="selectType(item.type, item.url)">{{item.value}}</li>
         </ul>
       </div>
       <div class="type-more" v-else>
@@ -51,8 +52,39 @@
           </div>
         </div>
         <div class="goods-two" v-else>
-          <div class="goods-item brick-item"></div>
-          <div class=""></div>
+          <template v-for="(item, index) in goodsData">
+            <div class="goos-item-sm" :key="index" v-if="index === 7">
+              <a class="brick-item" :href="item.url" target="_blank">
+                <div class="text-container">
+                  <h3 class="name">{{item.value}}</h3>
+                  <div class="price">
+                    <span>{{item.newPrice}}元</span>
+                    <span v-if="item.sub">起</span>
+                  </div>
+                </div>
+                <img :src="item.src" :alt="item.value">
+              </a>
+              <a class="brick-item" :href="moreurl" target="_blank">
+                <div class="text-container look-more">
+                  <h3 class="name">浏览更多</h3>
+                  <span class="desc">热门</span>
+                </div>
+                <img src="../assets/image/right.png">
+              </a>
+            </div>
+            <div class="goods-item brick-item" :key="index" v-else>
+              <a :href="item.url" target="_blank">
+                <img :src="item.src" :alt="item.value">
+                <h3 class="name ellipsis">{{item.value}}</h3>
+                <span class="desc ellipsis">{{item.desc}}</span>
+                <div class="price">
+                  <span>{{item.newPrice}}元</span>
+                  <span v-if="item.sub">起</span>
+                  <del v-if="item.oldPrice">{{item.oldPrice}}元</del>
+                </div>
+              </a>
+            </div>
+          </template>
         </div>
       </div>
     </div>
@@ -62,9 +94,32 @@
 <script>
 export default {
   data () {
-    return {}
+    return {
+      type: 'hots',
+      moreurl: '',
+      goodsData: ''
+    }
   },
-  props: ['goodsItem']
+  props: ['goodsItem'],
+  methods: {
+    selectType (type, url) {
+      this.type = type;
+      this.moreurl = url;
+      this.goodsData = this.goodsItem.listData[type];
+    },
+    init () {
+      if (this.goodsItem.tabList) {
+        this.moreurl = this.goodsItem.tabList[0].url;
+        this.goodsData = this.goodsItem.listData.hots;
+      } else {
+        this.moreurl = '';
+        this.goodsData = '';
+      }
+    }
+  },
+  mounted() {
+    this.init();
+  }
 }
 </script>
 
@@ -137,78 +192,133 @@ export default {
 
   .box-content {
     display: flex;
-    .promo-content {
-      .promo-one {
-        a {
-          display: block;
-          height: 614px;
-          img {
-            height: 100%;
-            width: 234px;
-          }
+    .promo-content .promo-one {
+      a {
+        display: block;
+        height: 614px;
+        img {
+          height: 100%;
+          width: 234px;
+        }
+      }
+    }
+
+    .promo-two {
+      a {
+        display: block;
+        height: 300px;
+        img {
+          width: 234px;
+          height: 100%;
         }
       }
 
-      .promo-two {
-        a {
-          display: block;
-          height: 300px;
-          img {
-            width: 234px;
-            height: 100%;
+      a:first-child {
+        margin-bottom: 14px;
+      }
+    }
+
+    .goods-content .goods-one,
+    .goods-content .goods-two {
+      width: 992px;
+      display: flex;
+      flex-wrap: wrap;
+      .goods-item {
+        background: #fff;
+        height: 300px;
+        padding: 20px 0;
+        width: 234px;
+        margin-left: 14px;
+        margin-bottom: 14px;
+      }
+    }
+
+    .goods-two .goos-item-sm {
+      height: 300px;
+      width: 234px;
+      margin-left: 14px;
+      a {
+        display: flex;
+        justify-content: space-between;
+        height: 143px;
+        background: #fff;
+        padding: 30px 30px;
+        margin-bottom: 14px;
+        img {
+          width: 80px;
+          height: 80px;
+          margin: 0;
+        }
+
+        .text-container {
+          width: 94px;
+          padding-top: 10px;
+          text-align: left;
+          .name {
+            margin: 0 0 5px;
+          }
+
+          .price {
+            margin: 0;
           }
         }
 
-        a:first-child {
-          margin-bottom: 14px;
+        .look-more {
+          padding-top: 0;
+          display: flex;
+          flex-direction: column;
+          align-self: center;
+          .name {
+            font-size: 18px;
+            color: #333;
+            margin: 0;
+          }
+
+          .desc {
+            font-size: 12px;
+            color: #757575;
+            margin: 0;
+          }
+        }
+
+        img {
+          width: 80px;
+          height: 80px;
         }
       }
     }
 
     .goods-content {
-      .goods-one {
-        width: 992px;
-        display: flex;
-        flex-wrap: wrap;
-        .goods-item {
-          background: #fff;
-          height: 300px;
-          padding: 20px 0;
-          width: 234px;
-          margin-left: 14px;
-          margin-bottom: 14px;
-          a {
-            display: block;
-            img {
-              width: 160px;
-              height: 160px;
-              margin: 0 auto 18px;
-            }
+      a {
+        display: block;
+        img {
+          width: 160px;
+          height: 160px;
+          margin: 0 auto 18px;
+        }
 
-            .name {
-              font-size: 14px;
-              font-weight: 400;
-              color: #333;
-              margin: 0 10px 2px;
-            }
+        .name {
+          font-size: 14px;
+          font-weight: 400;
+          color: #333;
+          margin: 0 10px 2px;
+        }
 
-            .desc {
-              display: block;
-              margin: 0 10px 10px;
-              height: 18px;
-              font-size: 12px;
-              color: #b0b0b0;
-            }
+        .desc {
+          display: block;
+          margin: 0 10px 10px;
+          height: 18px;
+          font-size: 12px;
+          color: #b0b0b0;
+        }
 
-            .price {
-              margin: 0 10px 14px;
-              font-size: 14px;
-              color: #ff6700;
-              del {
-                color: #b0b0b0;
-                margin-left: 8px;
-              }
-            }
+        .price {
+          margin: 0 10px 14px;
+          font-size: 14px;
+          color: #ff6700;
+          del {
+            color: #b0b0b0;
+            margin-left: 8px;
           }
         }
       }
@@ -218,8 +328,8 @@ export default {
   .brick-item {
     transition: all .2s linear;
     &:hover {
-      transform: translate3d(0,-2px,0);
-      box-shadow: 0 15px 30px rgba(0,0,0,.1);
+      transform: translate3d(0, -2px, 0);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, .1);
     }
   }
 </style>
