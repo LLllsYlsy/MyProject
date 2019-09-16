@@ -7,8 +7,8 @@
           <li class="tab-item"
           v-for="(item, index) in goodsItem.tabList"
           :key="index"
-          :class="{'active': item.type === type}"
-          @mouseenter="selectType(item.type, item.url)">{{item.value}}</li>
+          :class="{'active': item.type === selectItem.type}"
+          @mouseenter="selectType(item)">{{item.value}}</li>
         </ul>
       </div>
       <div class="type-more" v-else>
@@ -64,10 +64,10 @@
                 </div>
                 <img :src="item.src" :alt="item.value">
               </a>
-              <a class="brick-item" :href="moreurl" target="_blank">
+              <a class="brick-item" :href="selectItem.url" target="_blank">
                 <div class="text-container look-more">
                   <h3 class="name">浏览更多</h3>
-                  <span class="desc">热门</span>
+                  <span class="desc">{{selectItem.value}}</span>
                 </div>
                 <img src="../assets/image/right.png">
               </a>
@@ -95,24 +95,22 @@
 export default {
   data () {
     return {
-      type: 'hots',
-      moreurl: '',
+      selectItem: '',
       goodsData: ''
     }
   },
   props: ['goodsItem'],
   methods: {
-    selectType (type, url) {
-      this.type = type;
-      this.moreurl = url;
-      this.goodsData = this.goodsItem.listData[type];
+    selectType (item) {
+      this.selectItem = item;
+      this.goodsData = this.goodsItem.listData[item.type];
     },
     init () {
       if (this.goodsItem.tabList) {
-        this.moreurl = this.goodsItem.tabList[0].url;
+        this.selectItem = this.goodsItem.tabList[0];
         this.goodsData = this.goodsItem.listData.hots;
       } else {
-        this.moreurl = '';
+        this.selectItem = '';
         this.goodsData = '';
       }
     }

@@ -44,7 +44,6 @@ export default {
         boxTitle: '家电',
         isHot: true,
         vertical: false,
-        url: 'https://www.mi.com/p/3469.html',
         tabList: [
           {value: '热门', type: 'hots', url: 'https://www.mi.com/p/3469.html'},
           {value: '电视音影', type: 'television', url: 'https://www.mi.com/a/h/9819.html'}
