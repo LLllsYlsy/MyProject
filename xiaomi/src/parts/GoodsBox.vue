@@ -53,7 +53,7 @@
         </div>
         <div class="goods-two" v-else>
           <template v-for="(item, index) in goodsData">
-            <div class="goos-item-sm" :key="index" v-if="index === 7">
+            <div class="goods-item-sm" :key="index" v-if="index === goodsData.length - 1 && goodsData.length % 2 === 0">
               <a class="brick-item" :href="item.url" target="_blank">
                 <div class="text-container">
                   <h3 class="name">{{item.value}}</h3>
@@ -72,7 +72,26 @@
                 <img src="../assets/image/right.png">
               </a>
             </div>
-            <div class="goods-item brick-item" :key="index" v-else>
+            <div class="goods-item-bg" :key="index" v-if="index === goodsData.length - 1 && goodsData.length % 2 !== 0">
+              <a class="brick-item" :href="item.url" target="_blank">
+                <img :src="item.src" :alt="item.value">
+                <h3 class="name ellipsis">{{item.value}}</h3>
+                <span class="desc ellipsis">{{item.desc}}</span>
+                <div class="price">
+                  <span>{{item.newPrice}}元</span>
+                  <span v-if="item.sub">起</span>
+                  <del v-if="item.oldPrice">{{item.oldPrice}}元</del>
+                </div>
+              </a>
+              <a class="brick-more brick-item" :href="selectItem.url" target="_blank">
+                <div class="text-container look-more">
+                  <h3 class="name">浏览更多</h3>
+                  <span class="desc">{{selectItem.value}}</span>
+                </div>
+                <img src="../assets/image/right.png">
+              </a>
+            </div>
+            <div class="goods-item brick-item" :key="index" v-if="index < goodsData.length - 1">
               <a :href="item.url" target="_blank">
                 <img :src="item.src" :alt="item.value">
                 <h3 class="name ellipsis">{{item.value}}</h3>
@@ -231,7 +250,7 @@ export default {
       }
     }
 
-    .goods-two .goos-item-sm {
+    .goods-two .goods-item-sm {
       height: 300px;
       width: 234px;
       margin-left: 14px;
@@ -240,48 +259,37 @@ export default {
         justify-content: space-between;
         height: 143px;
         background: #fff;
-        padding: 30px 30px;
+        padding: 30px 20px 30px 30px;
         margin-bottom: 14px;
         img {
           width: 80px;
           height: 80px;
           margin: 0;
         }
+      }
+    }
 
-        .text-container {
-          width: 94px;
-          padding-top: 10px;
-          text-align: left;
-          .name {
-            margin: 0 0 5px;
-          }
+    .goods-two .goods-item-bg {
+      height: 300px;
+      width: 496px;
+      display: flex;
+      a {
+        display: block;
+        width: 234px;
+        background: #fff;
+        margin-left: 14px;
+        padding: 20px 0;
+      }
 
-          .price {
-            margin: 0;
-          }
-        }
-
-        .look-more {
-          padding-top: 0;
-          display: flex;
-          flex-direction: column;
-          align-self: center;
-          .name {
-            font-size: 18px;
-            color: #333;
-            margin: 0;
-          }
-
-          .desc {
-            font-size: 12px;
-            color: #757575;
-            margin: 0;
-          }
-        }
-
+      .brick-more {
+        display: flex;
+        justify-content: space-between;
+        height: 143px;
+        padding: 30px 20px 30px 30px;
         img {
           width: 80px;
           height: 80px;
+          margin: 0;
         }
       }
     }
@@ -328,6 +336,40 @@ export default {
     &:hover {
       transform: translate3d(0, -2px, 0);
       box-shadow: 0 15px 30px rgba(0, 0, 0, .1);
+    }
+  }
+
+  .goods-two .goods-item-sm,
+  .goods-two .goods-item-bg {
+    .look-more {
+      padding-top: 0 !important;
+      display: flex;
+      flex-direction: column;
+      align-self: center;
+      .name {
+        font-size: 18px;
+        color: #333;
+        margin: 0;
+      }
+
+      .desc {
+        font-size: 12px;
+        color: #757575;
+        margin: 0;
+      }
+    }
+
+    .text-container {
+      width: 94px;
+      padding-top: 10px;
+      text-align: left;
+      .name {
+        margin: 0 0 5px;
+      }
+
+      .price {
+        margin: 0;
+      }
     }
   }
 </style>
