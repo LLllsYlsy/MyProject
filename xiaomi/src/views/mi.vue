@@ -7,6 +7,7 @@
     <div class="gray-page">
       <flash-sale></flash-sale>
       <goods-sale></goods-sale>
+      <video-box></video-box>
     </div>
   </div>
 </template>
@@ -18,6 +19,7 @@ import MenuBanner from '../components/MenuBanner'
 import SubChannel from '../components/SubChannel'
 import FlashSale from '../components/FlashSale'
 import GoodsSale from '../components/GoodsSale'
+import VideoBox from '../components/VideoBox'
 
 export default {
   data () {
@@ -30,6 +32,7 @@ export default {
     'SubChannel': SubChannel,
     'FlashSale': FlashSale,
     'GoodsSale': GoodsSale,
+    'VideoBox': VideoBox,
   }
 }
 </script>
