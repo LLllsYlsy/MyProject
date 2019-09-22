@@ -12,7 +12,7 @@
         </ul>
       </div>
       <div class="type-more" v-else>
-        <a :href="goodsItem.url">
+        <a :href="goodsItem.url" target="_blank">
           <span>查看全部</span>
           <i class="fa fa-angle-right"></i>
         </a>
