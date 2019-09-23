@@ -9,6 +9,8 @@
       <goods-sale></goods-sale>
       <video-box></video-box>
     </div>
+    <site-footer></site-footer>
+    <site-info></site-info>
   </div>
 </template>
 
@@ -20,6 +22,8 @@ import SubChannel from '../components/SubChannel'
 import FlashSale from '../components/FlashSale'
 import GoodsSale from '../components/GoodsSale'
 import VideoBox from '../components/VideoBox'
+import SiteFooter from '../components/SiteFooter'
+import SiteInfo from '../components/SiteInfo'
 
 export default {
   data () {
@@ -33,6 +37,8 @@ export default {
     'FlashSale': FlashSale,
     'GoodsSale': GoodsSale,
     'VideoBox': VideoBox,
+    'SiteFooter': SiteFooter,
+    'SiteInfo': SiteInfo,
   }
 }
 </script>

@@ -43,41 +43,42 @@ export default {
       border-radius: 2px;
       box-shadow: 0 1px 3px rgba(0,0,0,.3);
       overflow: hidden;
-      .window-header {
-        height: 60px;
-        padding: 14px 20px;
-        line-height: 32px;
-        background-color: #f5f5f5;
-        display: flex;
-        justify-content: space-between;
-        .name {
-          font-size: 18px;
-          font-weight: 400;
-          color: #424242;
-        }
-
-        .close {
-          vertical-align: middle;
-          width: 32px;
-          line-height: 32px;
-          font-size: 24px;
-          font-weight: 400;
-          border-radius: 30px;
-          color: #757575;
-          background-color: #f5f5f5;
-          transition: all .2s;
-          cursor: pointer;
-          &:hover {
-            color: #fff;
-			      background: #e53935;
-          }
-        }
-      }
 
       video {
         width: 100%;
         height: 432px;
         background-color: #000;
+      }
+    }
+  }
+
+  .window-header {
+    height: 60px;
+    padding: 14px 20px;
+    line-height: 32px;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: space-between;
+    .name {
+      font-size: 18px;
+      font-weight: 400;
+      color: #424242;
+    }
+
+    .close {
+      vertical-align: middle;
+      width: 32px;
+      line-height: 32px;
+      font-size: 24px;
+      font-weight: 400;
+      border-radius: 30px;
+      color: #757575;
+      background-color: #f5f5f5;
+      transition: all .2s;
+      cursor: pointer;
+      &:hover {
+        color: #fff;
+        background: #e53935;
       }
     }
   }
