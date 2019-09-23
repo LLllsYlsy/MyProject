@@ -23,7 +23,7 @@
         </a>
       </li>
     </ul>
-    <video-window v-show="playFlag" v-on:windowEvent="windowClose" :videoItem="videoItem"></video-window>
+    <video-window v-show="playFlag" @windowEvent="windowClose" :videoItem="videoItem"></video-window>
   </div>
 </template>
 
