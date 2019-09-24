@@ -10,7 +10,9 @@
       <video-box></video-box>
     </div>
     <site-footer></site-footer>
-    <site-info></site-info>
+    <div class="gray-page">
+      <site-info></site-info>
+    </div>
   </div>
 </template>
 

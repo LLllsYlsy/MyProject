@@ -8,6 +8,9 @@
             <div class="item-style" v-if="item.value === '小米商城'">
               <a :href="item.url">{{item.value}}</a>
             </div>
+            <div class="item-style" v-if="item.value === 'Select Location'">
+              <a :href="item.url">{{item.value}}</a>
+            </div>
             <div class="item-style" v-if="item.value === '下载app'"
             @mouseenter="downloadQRCodeShow"
             @mouseleave="downloadQRCodeHide">
@@ -25,7 +28,7 @@
                 </transition>
               </div>
             </div>
-            <div class="item-style" v-if="item.value !== '小米商城' && item.value !== '下载app'">
+            <div class="item-style" v-if="item.value !== '小米商城' && item.value !== '下载app' && item.value !== 'Select Location'">
               <a :href="item.url" target="_blank">{{item.value}}</a>
             </div>
             <span class="nav-span" v-show="index !== navsData.length - 1">|</span>
@@ -93,7 +96,7 @@ export default {
         {value: '资质证照', url: 'https://www.mi.com/aptitude/list/?id=41'},
         {value: '协议规则', url: 'https://www.mi.com/aptitude/list/'},
         {value: '下载app', url: 'https://www.mi.com/appdownload/'},
-        {value: 'Select Region', url: ''}
+        {value: 'Select Location', url: 'javascript:void(0);'}
       ],
       loginData: [
         {value: '登陆', url: 'http://order.mi.com/site/login?redirectUrl=http://www.mi.com/index.html'},
