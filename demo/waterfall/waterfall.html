@@ -6,8 +6,63 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>waterfall</title>
 
+    <script src="https://cdn.bootcss.com/vue/2.5.2/vue.min.js"></script>
 </head>
 <body>
+    <div id="app">
+        <ul class="waterfall">
+            <li class="list-item"
+            v-for="index in count"
+            :key="index"
+            :style="randomHeight"
+            >{{index}}</li>
+        </ul>
+    </div>
 
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data () {
+                return {
+                    bricks: '',
+                    heights: '',
+                    count: 20
+                }
+            },
+            methods: {
+            },
+            computed: {
+                randomHeight () {
+                    return {
+                        'height': `${parseInt(Math.random() * 200) + 200}px`
+                    }
+                }
+            },
+            mounted () {
+            },
+        })
+    </script>
+
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .waterfall {
+            display: flex;
+            list-style: none;
+        }
+
+        .list-item {
+            width: 200px;
+            background-color: #CCCCCC;
+        }
+    </style>
 </body>
 </html>
