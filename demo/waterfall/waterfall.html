@@ -12,9 +12,9 @@
     <div id="app">
         <ul class="waterfall">
             <li class="list-item"
-            v-for="index in count"
+            v-for="(item, index) in boxs"
             :key="index"
-            :style="randomHeight"
+            :style="{'height': `${item.height}px`}"
             >{{index}}</li>
         </ul>
     </div>
@@ -24,21 +24,41 @@
             el: '#app',
             data () {
                 return {
-                    bricks: '',
+                    boxs: '',
                     heights: '',
                     count: 20
                 }
             },
             methods: {
-            },
-            computed: {
-                randomHeight () {
-                    return {
-                        'height': `${parseInt(Math.random() * 200) + 200}px`
+                setRandomHight () {
+                    let heights = [];
+                    let boxs = [];
+
+                    for (let i = 0; i < this.count; i++) {
+                        let height = parseInt(Math.random() * 200) + 200;
+                        heights.push(height);
+                        boxs.push({'height': height});
                     }
+
+                    this.heights = heights;
+                    this.boxs = boxs;
+                },
+                setPosition () {
+                    let boxNumInRow = parseInt(document.body.clientWidth / 200);
+                    console.log('boxNumInRow', boxNumInRow);
                 }
             },
+            computed: {
+            },
             mounted () {
+                let _this = this;
+
+                this.setRandomHight();
+                this.setPosition();
+
+                window.onresize = () => {
+                    console.log('resize');
+                }
             },
         })
     </script>
@@ -57,12 +77,27 @@
         .waterfall {
             display: flex;
             list-style: none;
+            flex-direction: row;
+            flex-flow: wrap;
+            position: relative;
         }
 
         .list-item {
+            display: block;
             width: 200px;
             background-color: #CCCCCC;
+            /* background-color: rgb(255,255,255); */
+            /* border: 1px solid #CCCCCC; */
+            /* border-radius: 5px; */
+            /* box-shadow: 2px 2px 3px rgba(204, 204, 204, 0.349019607843137); */
+            transition: all 1s;
+            cursor: pointer;
         }
+
+        /* .list-item:hover {
+            transform: translate3d(0, -2px, 0);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, .1);
+        } */
     </style>
 </body>
 </html>
