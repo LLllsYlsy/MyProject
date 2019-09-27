@@ -14,7 +14,7 @@
             <li class="list-item"
             v-for="(item, index) in boxs"
             :key="index"
-            :style="{'height': `${item.height}px`}"
+            :style="boxStyle(item)"
             >{{index}}</li>
         </ul>
     </div>
@@ -26,7 +26,9 @@
                 return {
                     boxs: '',
                     heights: '',
-                    count: 20
+                    count: 20,
+                    colHeight: '',
+                    boxNumInRow: 0,
                 }
             },
             methods: {
@@ -45,10 +47,36 @@
                 },
                 setPosition () {
                     let boxNumInRow = parseInt(document.body.clientWidth / 200);
-                    console.log('boxNumInRow', boxNumInRow);
+                    this.boxNumInRow = boxNumInRow;
+                    // console.log('boxNumInRow', boxNumInRow);
+
+                    this.colHeight = [];
+                    for (let i = 0; i < boxNumInRow - 1; i++) {
+                        this.colHeight[i] = 10;
+                    }
+
+                    this.getMinHeightIndex(this.colHeight);
+                },
+                getMinHeightIndex (array) {
+                    let min = array[0];
+                    let index = 0;
+                    array.map((item, key) => {
+                        if (min > array[key]) {
+                            min = array[key];
+                            index = key;
+                        }
+                    })
+                    return index;
                 }
             },
             computed: {
+                boxStyle (item) {
+                    return (item) => {
+                       return {
+                        'height': `${item.height}px`
+                        }
+                    }
+                }
             },
             mounted () {
                 let _this = this;
