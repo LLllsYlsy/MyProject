@@ -29,6 +29,10 @@
                     count: 20,
                     colHeight: '',
                     boxNumInRow: 0,
+
+                    // 空间距离
+                    topDistance: 10,
+                    leftDistance: 10,
                 }
             },
             methods: {
@@ -48,9 +52,8 @@
                 setPosition () {
                     let boxNumInRow = parseInt(document.body.clientWidth / 200);
                     this.boxNumInRow = boxNumInRow;
-                    // console.log('boxNumInRow', boxNumInRow);
-
                     this.colHeight = [];
+
                     for (let i = 0; i < boxNumInRow - 1; i++) {
                         this.colHeight[i] = 10;
                     }
@@ -60,12 +63,14 @@
                 getMinHeightIndex (array) {
                     let min = array[0];
                     let index = 0;
+
                     array.map((item, key) => {
                         if (min > array[key]) {
                             min = array[key];
                             index = key;
                         }
                     })
+
                     return index;
                 }
             },
@@ -84,6 +89,7 @@
                 this.setRandomHight();
                 this.setPosition();
 
+                // 窗口大小变化事件
                 window.onresize = () => {
                     console.log('resize');
                 }
