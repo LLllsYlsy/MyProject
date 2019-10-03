@@ -11,5 +11,9 @@ Vue.config.productionTip = false
 
 new Vue({
   router,
-  render: h => h(App)
+  render: h => h(App),
+  data: {
+    // 中央事件总线 二
+    // bus: new Vue(),
+  }
 }).$mount('#app')

@@ -13,6 +13,8 @@
     <div class="gray-page">
       <site-info></site-info>
     </div>
+    <!-- 弹窗 -->
+    <video-window></video-window>
   </div>
 </template>
 
@@ -26,6 +28,8 @@ import GoodsSale from '../components/GoodsSale'
 import VideoBox from '../components/VideoBox'
 import SiteFooter from '../components/SiteFooter'
 import SiteInfo from '../components/SiteInfo'
+
+import VideoWindow from '../parts/VideoWindow'
 
 export default {
   data () {
@@ -41,6 +45,7 @@ export default {
     'VideoBox': VideoBox,
     'SiteFooter': SiteFooter,
     'SiteInfo': SiteInfo,
+    'VideoWindow': VideoWindow,
   }
 }
 </script>

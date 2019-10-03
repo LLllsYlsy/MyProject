@@ -80,10 +80,9 @@ export default {
   },
   methods: {
     countDown () {
-      let _this = this;
       clearInterval(this.countDownTimer);
       this.countDownTimer = setInterval(() => {
-        _this.timeComput();
+        this.timeComput();
       }, 1000);
     },
     timeComput () {

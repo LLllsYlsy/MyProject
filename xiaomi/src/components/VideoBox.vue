@@ -23,18 +23,15 @@
         </a>
       </li>
     </ul>
-    <video-window v-show="playFlag" @windowEvent="windowClose" :videoItem="videoItem"></video-window>
   </div>
 </template>
 
 <script>
-import VideoWindow from '../parts/VideoWindow'
+import bus from '@/bus.js'
 
 export default {
   data () {
     return {
-      videoItem: '',
-      playFlag: false,
       videoData: [
         {value: 'Redmi Note 8 系列发布会', desc: '', src: 'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/3a134c9f8fffb85a47ac397e7eeba7e8.jpg', videourl: 'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/df3dc1da003b7db992e902f653326476.mp4'},
         {value: '小米CC9', desc: '深蓝星球', src: 'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/1541da85ac8b204056374641eee24726.jpg', videourl: 'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/7a2e31bf18e8fb5abd2a32ea93f0d46b.mp4'},
@@ -43,16 +40,10 @@ export default {
       ]
     }
   },
-  components: {
-    'VideoWindow': VideoWindow
-  },
   methods: {
     playVideo (item) {
-      this.videoItem = item;
-      this.playFlag = true;
-    },
-    windowClose (flag) {
-      this.playFlag = false;
+      // 发送数据
+      bus.$emit('windowEvent', item);
     }
   }
 }

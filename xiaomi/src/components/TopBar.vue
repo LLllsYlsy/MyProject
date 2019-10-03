@@ -117,9 +117,8 @@ export default {
     cartListHide () {
       // this.showFlag = false
 
-      let _this = this;
       this.timer = setTimeout(() => {
-        _this.showFlag = false;
+        this.showFlag = false;
       }, 300);
     },
     downloadQRCodeShow () {
@@ -129,9 +128,8 @@ export default {
     downloadQRCodeHide () {
       // this.dowmloadFlag = false;
 
-      let _this = this;
       this.codeTimer = setTimeout(() => {
-        _this.dowmloadFlag = false;
+        this.dowmloadFlag = false;
       }, 300);
     }
   }

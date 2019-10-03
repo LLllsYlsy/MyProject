@@ -57,10 +57,9 @@ export default {
 			}
     },
     play () {
-      let _this = this;
 			clearInterval(this.slideTimer);
 			this.slideTimer = setInterval(() => {
-				_this.next();
+				this.next();
 			}, 5000);
     }
   },

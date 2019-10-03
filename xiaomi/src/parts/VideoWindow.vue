@@ -1,5 +1,5 @@
 <template>
-  <div class="window-container">
+  <div class="window-container" v-show="videoFlag">
     <div class="video-window">
       <div class="window-header">
         <span class="name">{{videoItem.value}}</span>
@@ -11,16 +11,29 @@
 </template>
 
 <script>
+import bus from '@/bus.js'
+
 export default {
   data () {
-    return {}
+    return {
+      videoItem: '',
+      videoFlag: false,
+    }
   },
-  props: ['videoItem'],
   methods: {
+    receive() {
+      bus.$on('windowEvent', (data) => {
+        this.videoFlag = true;
+        this.videoItem = data;
+      })
+    },
     closeVideoWindow () {
       this.$refs.video.pause();// vue操作DOM
-      this.$emit('windowEvent', false);
+      this.videoFlag = false;
     }
+  },
+  mounted () {
+    this.receive();
   }
 }
 </script>
