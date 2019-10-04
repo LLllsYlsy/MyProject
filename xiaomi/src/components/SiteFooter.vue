@@ -20,7 +20,7 @@
             <li class="link-item"
             v-for="(item, index) in list.subLinks"
             :key="index">
-              <a :href="item.url" v-if="item.value === '官方微信'">
+              <a :href="item.url" @click="showWindow" v-if="item.value === '官方微信'">
                 {{item.value}}
               </a>
               <a :href="item.url" target="_blank" v-else>
@@ -43,6 +43,8 @@
 </template>
 
 <script>
+import bus from '@/bus.js'
+
 export default {
   data () {
     return {
@@ -85,6 +87,11 @@ export default {
           {value: '防伪查询', url: 'https://order.mi.com/service/imei'}
         ]}
       ]
+    }
+  },
+  methods: {
+    showWindow () {
+      bus.$emit('weChatWindowEvent', true);
     }
   }
 }

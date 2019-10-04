@@ -1,13 +1,17 @@
 <template>
-  <div class="window-container" v-show="videoFlag">
-    <div class="video-window">
-      <div class="window-header">
-        <span class="name">{{videoItem.value}}</span>
-        <span class="close" @click="closeVideoWindow">×</span>
-      </div>
-      <video :src="videoItem.videourl" ref="video" preload="auto" controls></video>
+  <transition name="window-trans">
+    <div class="video-window window-container" v-show="windowFlag">
+      <transition name="content-trans">
+        <div class="video-window" v-show="videoFlag">
+          <div class="window-header">
+            <span class="name">{{videoItem.value}}</span>
+            <span class="close" @click="close">×</span>
+          </div>
+          <video :src="videoItem.videourl" ref="video" preload="auto" controls></video>
+        </div>
+      </transition>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -18,18 +22,30 @@ export default {
     return {
       videoItem: '',
       videoFlag: false,
+      windowFlag: false,
     }
   },
   methods: {
     receive() {
-      bus.$on('windowEvent', (data) => {
+      bus.$on('videoWindowEvent', (data) => {
+        this.windowFlag = true;
         this.videoFlag = true;
         this.videoItem = data;
       })
     },
-    closeVideoWindow () {
+    close () {
       this.$refs.video.pause();// vue操作DOM
+      // this.windowFlag = false;
       this.videoFlag = false;
+    }
+  },
+  watch: {
+    videoFlag (newvalue, oldvalue) {
+      if (!newvalue) {
+        setTimeout(() => {
+          this.windowFlag = false;
+        }, 300);
+      }
     }
   },
   mounted () {
@@ -47,6 +63,7 @@ export default {
     top: 0;
     z-index: 999;
     background-color: rgba(0, 0, 0, 0.3);
+    transition: opacity .2s;
     .video-window {
       position: absolute;
       width: 880px;
@@ -94,5 +111,36 @@ export default {
         background: #e53935;
       }
     }
+  }
+
+  // 窗口
+  .window-trans-enter-active, .window-trans-leave-active {
+    transition: all .3s ease-out;
+    opacity: 1;
+  }
+
+  .window-trans-enter, .window-trans-leave-to {
+      opacity: 0;
+    }
+
+  .window-trans-enter-to, .window-trans-leave {
+    opacity: 1;
+  }
+
+  // 视频
+  .content-trans-enter-active, .content-trans-leave-active {
+    transition: all .3s ease-out;
+    transform: translateY(0%);
+    opacity: 1;
+  }
+
+  .content-trans-enter, .content-trans-leave-to {
+      transform: translateY(-10%);
+      opacity: 0;
+    }
+
+  .content-trans-enter-to, .content-trans-leave {
+    transform: translateY(0%);
+    opacity: 1;
   }
 </style>

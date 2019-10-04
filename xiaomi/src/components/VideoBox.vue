@@ -43,7 +43,7 @@ export default {
   methods: {
     playVideo (item) {
       // 发送数据
-      bus.$emit('windowEvent', item);
+      bus.$emit('videoWindowEvent', item);
     }
   }
 }

@@ -8,7 +8,7 @@
         <ul class="info-link">
           <li class="info-item" v-for="(item, index) in footerNavs" :key="index">
             <template v-if="item.value === 'Select Location'">
-              <a :href="item.url">{{item.value}}</a>
+              <a :href="item.url" @click="showWindow">{{item.value}}</a>
             </template>
             <template v-else>
               <a :href="item.url" target="_blank">{{item.value}}</a>
@@ -42,6 +42,8 @@
 </template>
 
 <script>
+import bus from '@/bus.js'
+
 export default {
   data () {
     return {
@@ -89,6 +91,11 @@ export default {
         {value: '网上交易保障中心', src: 'https://s01.mifile.cn/i/v-logo-3.png', url: 'http://www.315online.com.cn/member/315140007.html'},
         {value: '诚信经营 放心消费', src: 'https://i8.mifile.cn/b2c-mimall-media/ba10428a4f9495ac310fd0b5e0cf8370.png', url: 'https://www.mi.com/service/buy/commitment/'},
       ]
+    }
+  },
+  methods: {
+    showWindow () {
+      bus.$emit('locationWindowEvent', true);
     }
   }
 }

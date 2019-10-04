@@ -15,6 +15,8 @@
     </div>
     <!-- 弹窗 -->
     <video-window></video-window>
+    <we-chat-window></we-chat-window>
+    <location-window></location-window>
   </div>
 </template>
 
@@ -29,7 +31,10 @@ import VideoBox from '../components/VideoBox'
 import SiteFooter from '../components/SiteFooter'
 import SiteInfo from '../components/SiteInfo'
 
+// 弹窗
 import VideoWindow from '../parts/VideoWindow'
+import WeChatWindow from '../parts/WeChatWindow'
+import LocationWindow from '../parts/LocationWindow'
 
 export default {
   data () {
@@ -46,6 +51,8 @@ export default {
     'SiteFooter': SiteFooter,
     'SiteInfo': SiteInfo,
     'VideoWindow': VideoWindow,
+    'WeChatWindow': WeChatWindow,
+    'LocationWindow': LocationWindow,
   }
 }
 </script>

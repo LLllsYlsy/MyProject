@@ -8,7 +8,7 @@
             <div class="item-style" v-if="item.value === '小米商城'">
               <a :href="item.url">{{item.value}}</a>
             </div>
-            <div class="item-style" v-if="item.value === 'Select Location'">
+            <div class="item-style" @click="showWindow" v-if="item.value === 'Select Location'">
               <a :href="item.url">{{item.value}}</a>
             </div>
             <div class="item-style" v-if="item.value === '下载app'"
@@ -80,7 +80,9 @@
 </template>
 
 <script>
+import bus from '@/bus.js'
 import { clearInterval } from 'timers';
+
 export default {
   data () {
     return {
@@ -131,6 +133,9 @@ export default {
       this.codeTimer = setTimeout(() => {
         this.dowmloadFlag = false;
       }, 300);
+    },
+    showWindow () {
+      bus.$emit('locationWindowEvent', true);
     }
   }
 }
