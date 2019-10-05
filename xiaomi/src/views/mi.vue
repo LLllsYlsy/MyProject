@@ -13,6 +13,7 @@
     <div class="gray-page">
       <site-info></site-info>
     </div>
+    <tool-bar></tool-bar>
     <!-- 弹窗 -->
     <video-window></video-window>
     <we-chat-window></we-chat-window>
@@ -30,6 +31,7 @@ import GoodsSale from '../components/GoodsSale'
 import VideoBox from '../components/VideoBox'
 import SiteFooter from '../components/SiteFooter'
 import SiteInfo from '../components/SiteInfo'
+import ToolBar from '../components/ToolBar'
 
 // 弹窗
 import VideoWindow from '../parts/VideoWindow'
@@ -50,6 +52,7 @@ export default {
     'VideoBox': VideoBox,
     'SiteFooter': SiteFooter,
     'SiteInfo': SiteInfo,
+    'ToolBar': ToolBar,
     'VideoWindow': VideoWindow,
     'WeChatWindow': WeChatWindow,
     'LocationWindow': LocationWindow,

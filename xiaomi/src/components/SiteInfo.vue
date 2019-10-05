@@ -139,6 +139,9 @@ export default {
       a {
         display: inline-block;
         color: #757575;
+        &:hover {
+          color: #ff6709;
+        }
       }
 
       .nav-span {
