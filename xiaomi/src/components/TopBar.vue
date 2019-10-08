@@ -8,7 +8,7 @@
             <div class="item-style" v-if="item.value === '小米商城'">
               <a :href="item.url">{{item.value}}</a>
             </div>
-            <div class="item-style" v-if="item.value === 'Select Location'">
+            <div class="item-style" @click="showWindow" v-if="item.value === 'Select Location'">
               <a :href="item.url">{{item.value}}</a>
             </div>
             <div class="item-style" v-if="item.value === '下载app'"
@@ -80,7 +80,9 @@
 </template>
 
 <script>
+import bus from '@/bus.js'
 import { clearInterval } from 'timers';
+
 export default {
   data () {
     return {
@@ -117,9 +119,8 @@ export default {
     cartListHide () {
       // this.showFlag = false
 
-      let _this = this;
       this.timer = setTimeout(() => {
-        _this.showFlag = false;
+        this.showFlag = false;
       }, 300);
     },
     downloadQRCodeShow () {
@@ -129,10 +130,12 @@ export default {
     downloadQRCodeHide () {
       // this.dowmloadFlag = false;
 
-      let _this = this;
       this.codeTimer = setTimeout(() => {
-        _this.dowmloadFlag = false;
+        this.dowmloadFlag = false;
       }, 300);
+    },
+    showWindow () {
+      bus.$emit('locationWindowEvent', true);
     }
   }
 }

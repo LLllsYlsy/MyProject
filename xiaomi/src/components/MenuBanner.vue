@@ -253,9 +253,8 @@ export default {
   },
   methods: {
     bannerMenuHide () {
-      let _this = this;
       this.menuTimer = setTimeout(() => {
-				_this.bannerMenuFlag = false;
+				this.bannerMenuFlag = false;
 			}, 300);
     },
     bannerMenuShow (type) {
@@ -271,7 +270,7 @@ export default {
     menuListMatch () {
       if (this.listInfoData && this.listInfoData.length) {
         const matchData = [];
-        for(let i = 0; i < this.listInfoData.length; i += 6){
+        for (let i = 0; i < this.listInfoData.length; i += 6) {
           matchData.push(this.listInfoData.slice(i, i + 6));
         }
         return matchData;

@@ -148,9 +148,8 @@ export default {
       clearTimeout(this.timer);
     },
     menusListHide () {
-      let _this = this;
       this.timer = setTimeout(() => {
-				_this.menusListFlag = false;
+				this.menusListFlag = false;
 			}, 300);
     },
     // 搜索框下拉列表

@@ -45,10 +45,9 @@ export default {
 			}
     },
     play () {
-      let _this = this;
 			clearInterval(this.timer);
 			this.timer = setInterval(() => {
-				_this.next();
+				this.next();
 			}, 5000);
     },
     jump (index) {
