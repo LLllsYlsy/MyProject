@@ -25,10 +25,12 @@
             data () {
                 return {
                     boxs: '',
-                    heights: '',
-                    count: 20,
-                    colHeight: '',
+                    heights: '',// 所有盒子高度
+                    count: 20,// 盒子总数
+                    colHeight: '',// 每列高度
                     boxNumInRow: 0,
+                    boxWidth: 200,// 盒子宽度
+                    // containerWidth: '',// 容器宽度
 
                     // 空间距离
                     topDistance: 10,
@@ -50,15 +52,22 @@
                     this.boxs = boxs;
                 },
                 setPosition () {
-                    let boxNumInRow = parseInt(document.body.clientWidth / 200);
+                    let boxNumInRow = parseInt(document.body.clientWidth / this.boxWidth);
                     this.boxNumInRow = boxNumInRow;
                     this.colHeight = [];
 
-                    for (let i = 0; i < boxNumInRow - 1; i++) {
-                        this.colHeight[i] = 10;
+                    for (let i = 0; i < boxNumInRow; i++) {
+                        this.colHeight[i] = 0;
                     }
 
-                    this.getMinHeightIndex(this.colHeight);
+                    this.boxs.forEach((item, index) => {
+                        let minIndedx = this.getMinHeightIndex(this.colHeight);
+
+                        // 操作新增对象属性
+                        this.$set(item, 'left', (minIndedx + 1) * this.leftDistance + minIndedx * this.boxWidth);
+                        this.$set(item, 'top', this.colHeight[minIndedx] + this.topDistance);
+                        this.colHeight[minIndedx] = this.colHeight[minIndedx] + item.height + this.topDistance;
+                    });
                 },
                 getMinHeightIndex (array) {
                     let min = array[0];
@@ -77,21 +86,17 @@
             computed: {
                 boxStyle (item) {
                     return (item) => {
-                       return {
-                        'height': `${item.height}px`
-                        }
+                        return `height: ${item.height}px; left: ${item.left}px; top: ${item.top}px;`;
                     }
                 }
             },
             mounted () {
-                let _this = this;
-
                 this.setRandomHight();
                 this.setPosition();
 
                 // 窗口大小变化事件
                 window.onresize = () => {
-                    console.log('resize');
+                    this.setPosition();
                 }
             },
         })
@@ -109,14 +114,14 @@
         }
 
         .waterfall {
-            display: flex;
+            margin: 0 auto;
             list-style: none;
-            flex-direction: row;
-            flex-flow: wrap;
             position: relative;
+            width: 100%;
         }
 
         .list-item {
+            position: absolute;
             display: block;
             width: 200px;
             background-color: #CCCCCC;
