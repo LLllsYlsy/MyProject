@@ -30,7 +30,6 @@
                     colHeight: '',// 每列高度
                     boxNumInRow: 0,
                     boxWidth: 200,// 盒子宽度
-                    // containerWidth: '',// 容器宽度
 
                     // 空间距离
                     topDistance: 10,
@@ -60,7 +59,7 @@
                         this.colHeight[i] = 0;
                     }
 
-                    this.boxs.forEach((item, index) => {
+                    this.boxs.map((item) => {
                         let minIndedx = this.getMinHeightIndex(this.colHeight);
 
                         // 操作新增对象属性
@@ -124,19 +123,17 @@
             position: absolute;
             display: block;
             width: 200px;
-            background-color: #CCCCCC;
-            /* background-color: rgb(255,255,255); */
-            /* border: 1px solid #CCCCCC; */
-            /* border-radius: 5px; */
-            /* box-shadow: 2px 2px 3px rgba(204, 204, 204, 0.349019607843137); */
+            background-color: azure;
+            border-radius: 5px;
+            box-shadow: 2px 2px 3px rgba(204, 204, 204, 0.349019607843137);
             transition: all 1s;
             cursor: pointer;
         }
 
-        /* .list-item:hover {
+        .list-item:hover {
             transform: translate3d(0, -2px, 0);
             box-shadow: 0 15px 30px rgba(0, 0, 0, .1);
-        } */
+        }
     </style>
 </body>
 </html>
