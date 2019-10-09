@@ -97,7 +97,7 @@
                 window.onresize = () => {
                     this.setPosition();
                 }
-            },
+            }
         })
     </script>
 
@@ -123,15 +123,16 @@
             position: absolute;
             display: block;
             width: 200px;
-            background-color: azure;
+            /* background-color: gainsboro; */
+            background-color: rgb(198, 228, 139);
             border-radius: 5px;
-            box-shadow: 2px 2px 3px rgba(204, 204, 204, 0.349019607843137);
+            box-shadow: 2px 2px 3px rgba(204, 204, 204, 0.5);
             transition: all 1s;
             cursor: pointer;
         }
 
         .list-item:hover {
-            transform: translate3d(0, -2px, 0);
+            transform: translate3d(0, -4px, 0);
             box-shadow: 0 15px 30px rgba(0, 0, 0, .1);
         }
     </style>
