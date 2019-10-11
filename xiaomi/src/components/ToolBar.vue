@@ -9,8 +9,12 @@
           <img :src="item.src" v-show="!item.hover">
           <img :src="item.hsrc" v-show="item.hover">
         </div>
+        <div class="tool-qrcode" v-show="item.hover">
+          <img src="https://i8.mifile.cn/b2c-mimall-media/93650133310ec1c385487417a472a26c.png">
+          <span>手机扫一扫一分赢好礼</span>
+        </div>
       </a>
-      <a :href="item.url" target="_blank"
+      <a :href="item.url"
       :key="index"
       @mouseenter="iconHover(item)"
       @mouseleave="iconRecovery(item)"
@@ -20,6 +24,7 @@
           <img :src="item.src" v-show="!item.hover">
           <img :src="item.hsrc" v-show="item.hover">
         </div>
+        <span class="tool-tip" v-show="item.hover">{{item.value}}</span>
       </a>
       <a :href="item.url" target="_blank"
       :key="index"
@@ -30,6 +35,7 @@
           <img :src="item.src" v-show="!item.hover">
           <img :src="item.hsrc" v-show="item.hover">
         </div>
+        <span class="tool-tip" v-show="item.hover">{{item.value}}</span>
       </a>
     </template>
   </div>
@@ -117,6 +123,7 @@ export default {
     z-index: 99;
     a {
       display: block;
+      position: relative;
       width: 27px;
       height: 42px;
       background-color: #fff;
@@ -140,5 +147,98 @@ export default {
       opacity: 1;
       transition: opacity .3s;
     }
+  }
+
+  .tool-tip {
+    display: block;
+    position: absolute;
+    transform: translate3d(-115%,-50%,0);
+    color: #757575;
+    left: 0;
+    top: 50%;
+    height: 28px;
+    line-height: 28px;
+    padding: 0 8px;
+    background-color: #fff;
+    border: 1px solid #f5f5f5;
+    text-align: center;
+    white-space: nowrap;
+    transition: color .3s;
+    &:after {
+      border-color: rgba(0,0,0,0) rgba(0,0,0,0) rgba(0,0,0,0) #fff;
+      right: -12px;
+      z-index: 2;
+    }
+
+    &:before {
+      border-color: rgba(0,0,0,0) rgba(0,0,0,0) rgba(0,0,0,0) #f5f5f5;
+      right: -13px;
+      z-index: 1;
+    }
+  }
+
+  .tool-qrcode {
+    position: absolute;
+    text-align: center;
+    left: 0;
+    top: 0;
+    padding: 14px;
+    background: #fff;
+    border: 1px solid #f5f5f5;
+    transition: opacity .3s;
+    transform: translate3d(-110%,0,0);
+    opacity: 1;
+    img {
+      display: block;
+      width: 100px;
+      height: 100px;
+      margin: 6px auto;
+    }
+
+    span {
+      display: block;
+      width: 82px;
+      margin: 14px auto 0;
+      font-size: 14px;
+      color: #757575;
+      text-align: center;
+    }
+
+    &:after {
+      right: -12px;
+      border-color: rgba(0,0,0,0) rgba(0,0,0,0) rgba(0,0,0,0) #fff;
+      z-index: 2;
+      top: 10px;
+      border-width: 6px;
+    }
+
+    &:before {
+      right: -13px;
+      border-color: rgba(0,0,0,0) rgba(0,0,0,0) rgba(0,0,0,0) #f5f5f5;
+      z-index: 1;
+      top: 10px;
+      border-width: 6px;
+    }
+  }
+
+  .tool-tip:after, .tool-tip:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 0;
+    height: 0;
+    margin-top: -6px;
+    border-width: 6px;
+    border-style: solid;
+    overflow: hidden;
+  }
+
+  .tool-qrcode:after, .tool-qrcode:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    overflow: hidden;
   }
 </style>

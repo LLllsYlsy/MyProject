@@ -8,7 +8,7 @@
         <ul class="info-link">
           <li class="info-item" v-for="(item, index) in footerNavs" :key="index">
             <template v-if="item.value === 'Select Location'">
-              <a :href="item.url" @click="showWindow">{{item.value}}</a>
+              <a :href="item.url" @click="showLocationWindow">{{item.value}}</a>
             </template>
             <template v-else>
               <a :href="item.url" target="_blank">{{item.value}}</a>
@@ -94,7 +94,7 @@ export default {
     }
   },
   methods: {
-    showWindow () {
+    showLocationWindow () {
       bus.$emit('locationWindowEvent', true);
     }
   }
