@@ -22,7 +22,7 @@ table {
 }
 
 table th, table td {
-    border: 1px solid #ccc;
+    border: 1px solid #000;
     text-align: center;
     line-height: 36px;
 }
